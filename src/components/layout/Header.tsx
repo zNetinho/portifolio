@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <div className="container mx-auto md:px-6 lg:px-8 contents">
-      <header className="flex h-20 w-full shrink-0 items-center px-2 sm:px-4 md:px-6 border-b-gray-800 border-b-[1px] drop-shadow-lg">
+      <header className="sticky top-0 bg-gray-700 flex h-20 w-full shrink-0 items-center px-2 sm:px-4 md:px-6 border-b-gray-800 border-b-[1px] drop-shadow-lg">
         <Link href="#" className="mr-6 flex items-center" prefetch={false}>
           <Code className="h-6 w-6 flex hover:backdrop-sepia" />
           <div className='flex flex-col text-center'>
