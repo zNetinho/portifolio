@@ -3,6 +3,13 @@ import { poppins } from '../components/ui/fonts'
 
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
+import Page from '@/components/layout/Page'
+import Projetos from './projetos/page'
+import Home from './page'
+import { Router, useLocation, useRoutes } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
+import React from 'react'
+import TemplateTransition from '@/components/layout/Transition'
 
 
 export const metadata: Metadata = {
@@ -15,6 +22,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
@@ -25,7 +33,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <Page>
+            <TemplateTransition>
+              {children}
+            </TemplateTransition>
+          </Page>
         </ThemeProvider>
       </body>
     </html>
