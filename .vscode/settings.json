@@ -2,5 +2,12 @@
   "editor.fontFamily": "Fira code",
   "editor.fontLigatures": true,
   "editor.tabCompletion": "on",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.defaultFormatter": "vscode.typescript-language-features",
+  "editor.tabSize": 4,
+  "javascript.format.enable": true,
+
 }

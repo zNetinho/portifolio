@@ -9,6 +9,7 @@ export default function TemplateTransition({ children }: { children: React.React
       animate="visible"
       exit={{ opacity: 0, transition: { duration: 1 } }}
       variants={{ visible: { transition: { staggerChildren: 0.3 } } }}
+      className="w-full"
     >
       {children}
     </motion.div>

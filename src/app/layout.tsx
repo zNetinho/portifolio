@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={`h-auto ${poppins.className}`}>
+      <body className={`min-h-screen h-full ${poppins.className}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

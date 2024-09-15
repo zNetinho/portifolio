@@ -53,6 +53,13 @@ const config = {
           400: '#99ABBA',
           500: '#CCD7DE',
         },
+        javascript: '#f1e05a',
+        python: '#3572A5',
+        html: '#e34c26',
+        css: '#563d7c',
+        typescript: '#2b7489',
+        nodejs: '#43853d',
+        react: '#61dafb',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
