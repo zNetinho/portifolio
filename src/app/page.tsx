@@ -1,13 +1,11 @@
 "use client"
 import AboutMe from '@/components/AboutMe'
 import { CardCarousel, Carousel, DescriptionCardCarousel, PhotoCardCarousel, TitleCardCarousel } from '@/components/Carousel'
+import { GalleryProjects } from '@/components/gallery-projects'
 import Hero from '@/components/Hero'
-import Page from '@/components/layout/Page'
-import { skills } from '../../constants'
 import { ModeToggle } from '@/components/toggle-theme'
 import * as motion from "framer-motion/client"
-import { div } from 'framer-motion/client'
-const visible = { opacity: 1, y: 0, transition: { duration: 0.5 } };
+import { projects, skills } from '../../constants'
 
 export default function Home() {
   return (
@@ -20,7 +18,7 @@ export default function Home() {
           <AboutMe />
         </div>
       </section>
-      <section>
+      <section id="skills">
         <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Habilidades</h2>
         <div className='overflow-x-scroll scroll-smooth snap-mandatory snap-x scrollbar'>
           <Carousel className='flex gap-1'>
@@ -35,8 +33,18 @@ export default function Home() {
             ))}
           </Carousel>
         </div>
-
       </section>
+      <motion.section 
+        id="projetos"
+        className="flex flex-col w-full py-2 scrollbars"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+      >
+        <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Projetos</h2>
+        <GalleryProjects
+          projects={projects}
+        />
+      </motion.section>
       <div className="sticky float-right justify-end p-1">
         <ModeToggle />
       </div>

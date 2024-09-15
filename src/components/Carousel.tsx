@@ -62,7 +62,7 @@ function PhotoCardCarousel({
 }
 
 function TitleCardCarousel({ children, className }: genericsProps) {
-  return <h2 className={cn(['text-xl font-bold', className])}>{children}</h2>
+  return <h3 className={cn(['text-xl font-bold', className])}>{children}</h3>
 }
 
 function DescriptionCardCarousel({ children, className }: genericsProps) {

@@ -3,13 +3,30 @@ import Link from 'next/link'
 import { Code, MenuIcon, X } from 'lucide-react'
 import { Menu } from '../Menu'
 import { useEffect, useRef, useState } from 'react'
+import * as motion from 'framer-motion/client'
+
+const viewPort = window.visualViewport
+console.log(viewPort?.pageTop);
+
 
 export default function Header() {
   const [toggle, setToggle] = useState(false)
 
+  const [scrolling, setScrolling] = useState(false);
+  const [scrollTop, setScrollTop] = useState(0);
+
+  const onScroll = (e: any) => {
+    setScrollTop(e.target.documentElement.scrollTop);
+    setScrolling(e.target.documentElement.scrollTop > scrollTop);
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+  },[]);
+
   return (
     <div className="container mx-auto md:px-6 lg:px-8 contents">
-      <header className="sticky top-0 bg-gray-700 flex h-20 w-full shrink-0 items-center px-2 sm:px-4 md:px-6 border-b-gray-800 border-b-[1px] drop-shadow-lg">
+      <header className="sticky top-0 bg-white dark:bg-neutral-800 flex h-20 w-full shrink-0 items-center px-2 sm:px-4 md:px-6 border-b-gray-800 border-b-[1px] drop-shadow-lg">
         <Link href="#" className="mr-6 flex items-center" prefetch={false}>
           <Code className="h-6 w-6 flex hover:backdrop-sepia" />
           <div className='flex flex-col text-center'>
@@ -18,20 +35,32 @@ export default function Header() {
           </div>
         </Link>
         {/* Menu desktop */}
-        <div className='hidden lg:block'>
+        <motion.div 
+          className={`${scrollTop < 50 ? 'hidden lg:block' : 'hidden' }`}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.7, ease: 'easeInOut' }}
+        >
           <Menu />
-        </div>
+        </motion.div>
         {/* Fim menu desktop */}
         {/* Menu mobile */}
-        <div className="lg:hidden w-full flex justify-end">
+        <motion.div 
+          className={`${scrollTop > 50 ? 'block' : 'hidden' } w-full flex justify-end`}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.7, ease: 'easeInOut' }}
+        >
           { !toggle ? <MenuIcon
             className='cursor-pointer'
             onClick={() => setToggle(!toggle)}
           /> : <X className='cursor-pointer' onClick={() => setToggle(!toggle)}/>}
-        </div>
+        </motion.div>
         <div className={`${
               toggle ? 'translate-y-0 opacity-100' : 'translate-y-[-30px] opacity-0'
-              } h-auto rounded-lg bg-gray-800 absolute z-10 top-20 right-5 transition-all duration-300 ease-in-out`}
+              } h-auto w-56 rounded-lg dark:bg-neutral-800 bg-neutral-200 absolute z-10 top-20 right-5 transition-all duration-300 ease-in-out`}
     >
           <Menu direction={true} className='transition-transform delay-200 translate-y-3'/>
         </div>
