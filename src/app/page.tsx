@@ -6,6 +6,7 @@ import Hero from '@/components/Hero'
 import { ModeToggle } from '@/components/toggle-theme'
 import * as motion from "framer-motion/client"
 import { projects, skills } from '../../constants'
+import { MyExperiences } from '@/components/my-experience'
 
 export default function Home() {
   return (
@@ -45,6 +46,10 @@ export default function Home() {
           projects={projects}
         />
       </motion.section>
+      <section>
+        <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Experiências</h2>
+        <MyExperiences />
+      </section>
       <div className="sticky float-right justify-end p-1">
         <ModeToggle />
       </div>

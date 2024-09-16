@@ -4,9 +4,6 @@ import Footer from './Footer'
 import Header from './Header'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const viewPort = window.visualViewport
-console.log(viewPort?.pageTop);
-
 function Page(props: { children: React.ReactNode }) {
 
   return (

@@ -5,12 +5,9 @@ import { Menu } from '../Menu'
 import { useEffect, useRef, useState } from 'react'
 import * as motion from 'framer-motion/client'
 
-const viewPort = window.visualViewport
-console.log(viewPort?.pageTop);
-
-
 export default function Header() {
   const [toggle, setToggle] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   const [scrolling, setScrolling] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
@@ -20,9 +17,22 @@ export default function Header() {
     setScrolling(e.target.documentElement.scrollTop > scrollTop);
   }
 
+  const onResize = () => {
+    if(window) {
+      if (global.window.innerWidth <= 768) {
+        setIsMobile(true)
+      } else {
+        setIsMobile(false)
+      }
+    }
+  }
+
   useEffect(() => {
     window.addEventListener('scroll', onScroll);
-  },[]);
+    window.addEventListener('resize', onResize);
+  },[isMobile]);
+
+  console.log('é mobile:',isMobile);
 
   return (
     <div className="container mx-auto md:px-6 lg:px-8 contents">
@@ -47,7 +57,7 @@ export default function Header() {
         {/* Fim menu desktop */}
         {/* Menu mobile */}
         <motion.div 
-          className={`${scrollTop > 50 ? 'block' : 'hidden' } w-full flex justify-end`}
+          className={`${ isMobile || scrollTop > 50 ? 'block' : 'hidden' } w-full flex justify-end`}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -59,7 +69,7 @@ export default function Header() {
           /> : <X className='cursor-pointer' onClick={() => setToggle(!toggle)}/>}
         </motion.div>
         <div className={`${
-              toggle ? 'translate-y-0 opacity-100' : 'translate-y-[-30px] opacity-0'
+              toggle ? 'translate-y-0 opacity-100' : 'hidden translate-y-[-30px] opacity-0'
               } h-auto w-56 rounded-lg dark:bg-neutral-800 bg-neutral-200 absolute z-10 top-20 right-5 transition-all duration-300 ease-in-out`}
     >
           <Menu direction={true} className='transition-transform delay-200 translate-y-3'/>

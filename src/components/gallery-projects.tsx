@@ -20,17 +20,17 @@ type GenericsProps<T = unknown> = {
 
 const cardVariants: Variants = {
     offscreen: {
-      y: 300
+        y: 300
     },
     onscreen: {
-      y: 0,
-      transition: {
-        type: "spring",
-        bounce: 0.4,
-        duration: 0.8
-      }
+        y: 0,
+        transition: {
+            type: "spring",
+            bounce: 0.4,
+            duration: 0.8
+        }
     }
-  };
+};
 
 function GalleryProjects({ children, className, projects }: GenericsProps) {
     const scrollRef = useRef(null)
@@ -45,13 +45,9 @@ function GalleryProjects({ children, className, projects }: GenericsProps) {
                         <TitleProject>
                             {project.title}
                         </TitleProject>
-                        <div className="flex gap-1">
-                            {project.languages.map((language) => (
-                                <span key={project.id + language} className={`bg-${language.toLowerCase()} text-zinc-800 font-medium py-0.5 px-0.5 rounded-lg`}>
-                                    {language}
-                                </span>
-                            ))}
-                        </div>
+                        <FlagsLanguages 
+                            languages={project.languages}
+                        />
                         <DescriptionProject>
                             {project.description}
                         </DescriptionProject>
@@ -75,7 +71,7 @@ function CardProject({ className, children }: GenericsProps) {
 
     return (
         <motion.div
-            className={cn(['w-full flex rounded-lg dark:bg-neutral-800 bg-neutral-200 p-1.5', className])}
+            className={cn(['w-full flex gap-1 rounded-lg dark:bg-neutral-800 bg-neutral-200 p-1.5', className])}
             initial="offscreen"
             whileInView="onscreen"
             viewport={{ once: true, amount: 0.8 }}
@@ -106,6 +102,21 @@ function DescriptionProject({ children, className, classNameText }: GenericsProp
     )
 }
 
+type FlagLanguage = {
+    languages: string[]
+}
+function FlagsLanguages({ languages }: FlagLanguage) {
+    return (
+        <div className="flex gap-1">
+            {languages.map((language) => (
+                <span key={language} className={`bg-${language.toLowerCase()} text-zinc-800 font-medium py-0.5 px-0.5 rounded-lg`}>
+                    {language}
+                </span>
+            ))}
+        </div>
+    )
+}
+
 type ImageProjectProps = {
     src: string
     alt?: string
@@ -114,8 +125,6 @@ type ImageProjectProps = {
 }
 
 function ImageProject({ src, fetchPriority = 'low', loading = 'lazy', alt = '' }: GenericsProps<ImageProjectProps>) {
-    const scrollRef = useRef(null)
-
     return (
         <motion.div
             variants={cardVariants}
