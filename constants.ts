@@ -87,81 +87,81 @@ export type ProjectType = {
 export const projects: ProjectType[] = [
   {
     id: 1,
-    title: "Projeto 1",
-    description: "Esse é o primeiro projeto da galeria. Ele inclui uma animação sutil ao carregar.",
-    languages: ["HTML", "CSS", "JavaScript"],
+    title: "Dashboard ecommerce",
+    description: "Projeto, criado com Next.js, Um loja online, onde tem também um painel de administração",
+    languages: ["React", "Next.js", "Typescript"],
     image: {
-      src: "https://picsum.photos/200/300",
+      src: "https://picsum.photos/seed/picsum/200/300",
       alt: "Imagem do Projeto 1",
-      fetchPriority: "high",
-      loading: "eager"
+      fetchPriority: "low",
+      loading: "lazy"
     },
-    link: "/projetos/projeto-1"
+    link: "https://github.com/zNetinho/dashboard-ecommerce"
   },
   {
     id: 2,
-    title: "Projeto 2",
-    description: "Descrição breve sobre o segundo projeto da galeria.",
+    title: "Websocket chat",
+    description: "Chat em tempo real criado com websocket.io",
     languages: ["HTML", "CSS", "JavaScript"],
     image: {
-      src: "https://picsum.photos/200/300",
+      src: "https://picsum.photos/seed/picsum/200/300",
       alt: "Imagem do Projeto 2",
       fetchPriority: "low",
       loading: "lazy"
     },
-    link: "/projetos/projeto-2"
+    link: "https://github.com/zNetinho/websocket_chat"
   },
   {
     id: 3,
-    title: "Projeto 3",
-    description: "Terceiro projeto com detalhes sobre seu desenvolvimento e funcionalidades.",
-    languages: ["HTML", "CSS", "JavaScript"],
+    title: "Otimizador de imagem CLI",
+    description: "Uma CLI que baixa e otimiza as imagens enviadas numa planilha do sheets.",
+    languages: ["Typescript", "JavaScript"],
     image: {
-      src: "https://picsum.photos/200/300",
+      src: "https://picsum.photos/seed/picsum/200/300",
       alt: "Imagem do Projeto 3",
       fetchPriority: "low",
       loading: "lazy"
     },
-    link: "/projetos/projeto-3"
+    link: "https://github.com/zNetinho/optimize-cli"
   },
   {
     id: 4,
-    title: "Projeto 1",
-    description: "Esse é o primeiro projeto da galeria. Ele inclui uma animação sutil ao carregar.",
-    languages: ["HTML", "CSS", "JavaScript"],
+    title: "Api Estoque",
+    description: "API de controle de estoque, com rotas privadas, middlewares, tratativas de erros e autenticação.",
+    languages: ["JavaScript", "Node.js"],
     image: {
-      src: "https://picsum.photos/200/300",
+      src: "https://picsum.photos/seed/picsum/200/300",
       alt: "Imagem do Projeto 1",
-      fetchPriority: "high",
-      loading: "eager"
+      fetchPriority: "low",
+      loading: "lazy"
     },
-    link: "/projetos/projeto-1"
+    link: "https://github.com/zNetinho/api_estoque"
   },
   {
     id: 5,
-    title: "Projeto 2",
-    description: "Descrição breve sobre o segundo projeto da galeria.",
-    languages: ["HTML", "CSS", "JavaScript"],
+    title: "API TODO como Nestjs",
+    description: "API de TODO de tarefas, onde o usuário pode se registrar, e criar tarefas do dia a dia para conseguir se organizar, a aplicação com sistema de filas e cache do Redis para aumentar a performance e diminuir a carga do servidor, também tem o sistema de envio de e-mail sempre que um usuário se cadastra.",
+    languages: ["Nest.js", "Typescript", "JavaScript"],
     image: {
-      src: "https://picsum.photos/200/300",
+      src: "https://picsum.photos/seed/picsum/200/300",
       alt: "Imagem do Projeto 2",
       fetchPriority: "low",
       loading: "lazy"
     },
-    link: "/projetos/projeto-2"
+    link: "https://github.com/zNetinho/todo-nestjs"
   },
-  {
-    id: 6,
-    title: "Projeto 3",
-    description: "Terceiro projeto com detalhes sobre seu desenvolvimento e funcionalidades.",
-    languages: ["HTML", "CSS", "JavaScript"],
-    image: {
-      src: "https://picsum.photos/200/300",
-      alt: "Imagem do Projeto 3",
-      fetchPriority: "low",
-      loading: "lazy"
-    },
-    link: "/projetos/projeto-3"
-  }
+  // {
+  //   id: 6,
+  //   title: "Projeto 3",
+  //   description: "Terceiro projeto com detalhes sobre seu desenvolvimento e funcionalidades.",
+  //   languages: ["HTML", "CSS", "JavaScript"],
+  //   image: {
+  //     src: "https://picsum.photos/seed/picsum/200/300",
+  //     alt: "Imagem do Projeto 3",
+  //     fetchPriority: "low",
+  //     loading: "lazy"
+  //   },
+  //   link: "/projetos/projeto-3"
+  // }
 ]
 

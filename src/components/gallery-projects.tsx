@@ -4,6 +4,8 @@ import { motion, Variants } from 'framer-motion'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { ProjectType } from '../../constants'
+import Link from 'next/link'
+import { GithubIcon } from 'lucide-react'
 
 type ProjectsGithub = {
     full_name: string,
@@ -51,6 +53,17 @@ function GalleryProjects({ children, className, projects }: GenericsProps) {
                         <DescriptionProject>
                             {project.description}
                         </DescriptionProject>
+                        <div className="w-2 h-2 rounded-full flex justify-center items-center bg-neutral-900 hover:bg-neutral-800">
+                            <LinkProject
+                                href={project.link}
+                                target="_blank"
+                                className='m-auto'
+                                title={`Veja o código do ${project.title}`}
+                            >
+                                <GithubIcon className='' size={24} />
+                            </LinkProject>
+
+                        </div>
                     </div>
                     <div className="flex w-1/4">
                         <ImageProject
@@ -102,6 +115,7 @@ function DescriptionProject({ children, className, classNameText }: GenericsProp
     )
 }
 
+
 type FlagLanguage = {
     languages: string[]
 }
@@ -142,10 +156,25 @@ function ImageProject({ src, fetchPriority = 'low', loading = 'lazy', alt = '' }
     )
 }
 
-function LinkProject() {
+type LinkProjectProps = {
+    href: string
+    target: "_blank" | "_self" | "_parent" | "_top"
+    title?: string
+}
+
+function LinkProject({href, target, children, className, title}: GenericsProps<LinkProjectProps>) {
     return (
         <div>
-            LinkProject
+            <div>
+                <Link 
+                    href={href}
+                    target={target}
+                    className={cn(['', className ])}
+                    title={title}
+                >
+                    { children }
+                </Link>
+            </div>
         </div>
     )
 }

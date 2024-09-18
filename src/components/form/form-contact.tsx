@@ -8,7 +8,7 @@ export default function FormContact() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
-  const keyApi = process.env.API_KEY_STATIC_FORM
+  const keyApi = process.env.VERCEL_API_KEY_STATIC_FORM
 
     const [contact, setContact] = useState({
         name: '',
@@ -29,7 +29,6 @@ export default function FormContact() {
     
       const handleSend = async (e : FormEvent) => {
         e.preventDefault();
-        console.log("e o contact objeto:", contact.name, contact.email);
         contact.name = name
         contact.email = email
         contact.message = message
