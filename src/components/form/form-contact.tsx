@@ -8,7 +8,7 @@ export default function FormContact() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
-  const keyApi = process.env.VERCEL_API_KEY_STATIC_FORM
+  const keyApi = process.env.NEXT_PUBLIC_API_KEY_STATIC_FORM
 
     const [contact, setContact] = useState({
         name: '',
