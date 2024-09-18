@@ -9,11 +9,12 @@ import sql from './public/icons/programing/sql_language.svg'
 import git from './public/icons/programing/github.svg'
 import tailwindCss from './public/icons/programing/tailwind_css.svg'
 import pythonIcon from './public/icons/programing/python.svg'
+import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 
 type SkillType = {
   name: string
   level: number
-  icon?: React.ReactNode | string
+  icon?: string
 }
 
 export const skills: SkillType[] = [

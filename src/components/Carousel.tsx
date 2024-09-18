@@ -39,7 +39,7 @@ function CardCarousel({ children, className }: genericsProps) {
 }
 
 type PhotoCardCarouselProps = {
-  src: string
+  src: React.ReactNode | string | any
   fetchPriority?: 'low' | 'high'
   loading?: 'lazy' | 'eager'
 }
@@ -49,16 +49,18 @@ function PhotoCardCarousel({
   src,
   fetchPriority = 'low',
 }: genericsProps<PhotoCardCarouselProps>) {
-  return (
-    <Image
-      className={cn(['rounded-lg', className])}
-      src={src}
-      alt="Imagem do carousel."
-      width={100}
-      height={100}
-      fetchPriority={fetchPriority}
-    />
-  )
+
+    return (
+      <Image
+        className={cn(['rounded-lg', className])}
+        src={src}
+        alt="Imagem do carousel."
+        width={100}
+        height={100}
+        fetchPriority={fetchPriority}
+      />
+    )
+
 }
 
 function TitleCardCarousel({ children, className }: genericsProps) {

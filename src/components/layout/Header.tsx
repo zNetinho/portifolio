@@ -32,6 +32,11 @@ export default function Header() {
     window.addEventListener('resize', onResize);
   },[isMobile]);
 
+  useEffect(() => {
+    // defini que o scroll sempre vai para o topo, depois de carregado.
+    window.scrollTo(0, 0);
+  },[]);
+
   console.log('é mobile:',isMobile);
 
   return (

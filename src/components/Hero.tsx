@@ -1,5 +1,5 @@
 import React from 'react'
-import { protestGuerrilla } from './ui/fonts'
+import { poppins } from './ui/fonts'
 
 export default function Hero() {
   return (
@@ -9,7 +9,7 @@ export default function Hero() {
           <div className="ml-1 h-40 bg-gradient-to-b from-primary_custom-400 to-primary_custom-500 w-[1px] animate-increase-height"></div>
         </div>
         <div>
-          <h1 className={`text-4xl md:text-6xl font-bold ${protestGuerrilla.className}`}>Olá, eu sou o Neto! <br/>
+          <h1 className={`text-4xl md:text-6xl font-bold ${poppins.className}`}>Olá, eu sou o Neto! <br/>
               <span className='text-2xl md:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-primary_custom-100 to-primary_custom-400'>Web Developer full stack</span>
           </h1>
         </div>

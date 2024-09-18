@@ -6,7 +6,7 @@ import Hero from '@/components/Hero'
 import { ModeToggle } from '@/components/toggle-theme'
 import * as motion from "framer-motion/client"
 import { projects, skills } from '../../constants'
-import { MyExperiences } from '@/components/my-experience'
+import FormContact from '@/components/form/form-contact'
 
 export default function Home() {
   return (
@@ -47,8 +47,8 @@ export default function Home() {
         />
       </motion.section>
       <section>
-        <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Experiências</h2>
-        <MyExperiences />
+        <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Entre em contato comigo !</h2>
+        <FormContact />
       </section>
       <div className="sticky float-right justify-end p-1">
         <ModeToggle />
