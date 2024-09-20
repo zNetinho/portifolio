@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from 'react'
 import { Button } from '../ui/button'
 import { z } from 'zod'
 import { schemaFormContact } from './schema/schema-form-contact'
+import { useToast } from '@/components/hooks/use-toast'
 
 export type messageContact = z.infer<typeof schemaFormContact>
 export default function FormContact() {
@@ -19,6 +20,8 @@ export default function FormContact() {
         replyTo: '@', // this will set replyTo of email to email address entered in the form
         accessKey: keyApi // get your access key from https://www.staticforms.xyz
       });
+
+      const { toast } = useToast()
     
       const [response, setResponse] = useState({
         type: '',
@@ -42,6 +45,13 @@ export default function FormContact() {
           const json = await res.json();
     
           if (json.success) {
+            toast({
+              title: "Email enviado",
+              description: "Obrigado, Logo mais eu irei responder sua mensagem.",
+              duration: 2000,
+              type: 'foreground',
+              className: 'bg-green-500 text-white text-lg w-72 h-28 rounded-md text-left p-2'
+            })
             setResponse({
               type: 'success',
               message: 'Thank you for reaching out to us.'
@@ -62,14 +72,21 @@ export default function FormContact() {
       };
 
     return (
-        <form onSubmit={handleSend} action='https://api.staticforms.xyz/submit' method='post'>
-            <div className='flex flex-col gap-6 justify-around border-[1px] border-neutral-700'>
+        <form 
+          onSubmit={handleSend}
+          action='https://api.staticforms.xyz/submit'
+          method='post'
+          className=''
+        >
+            <div className='flex flex-col gap-6 justify-around rounded-lg border-[1px] border-neutral-400 p-2'>
                 <div className='flex flex-col w-full px-20 py-5'>
                     <label htmlFor='name'>Nome:</label>
                     <input 
                         name='name'
                         type='text' 
-                        className='p-[10px] rounded-lg placeholder:text-neutral-300 focus:outline-neutral-800 focus:border-neutral-800 selection:bg-white selection:text-black'
+                        className='p-[10px] border-[1px] border-neutral-400 rounded-lg placeholder:text-neutral-300 focus:outline-neutral-800 focus:border-neutral-800 selection:bg-white selection:text-black'
+                        placeholder='Seu nome'
+                        aria-label='Campo para inserir o seu nome'
                         onChange={handleChange}
                         required
                         onKeyUp={(e) => setName(e.currentTarget.value)}
@@ -79,9 +96,11 @@ export default function FormContact() {
                     <label >E-mail:</label>
                     <input
                         type='email'
-                        className='p-[10px] rounded-lg placeholder:text-neutral-300 focus:outline-neutral-800 focus:border-neutral-800 selection:bg-white selection:text-black'
+                        className='p-[10px] border-[1px] border-neutral-400  rounded-lg placeholder:text-neutral-300 focus:outline-neutral-800 focus:border-neutral-800 selection:bg-white selection:text-black'
                         pattern='[^@\s]+@[^@\s]+\.[^@\s]+'
+                        placeholder='Seu melhor e-mail'
                         name='email'
+                        aria-label='Campo para inserir o seu email'
                         required
                         onChange={handleChange}
                         onKeyUp={(e) => setEmail(e.currentTarget.value)}
@@ -89,7 +108,15 @@ export default function FormContact() {
                 </div>
                 <div className='flex flex-col w-full px-20 py-5'>
                     <p>Envie sua mensagem :)</p>
-                    <textarea name="message" rows={10} onChange={handleChange} onKeyUp={(e) => setMessage(e.currentTarget.value)}></textarea>
+                    <textarea 
+                      className='border-[1px] border-neutral-400 rounded-lg placeholder:text-neutral-300 focus:outline-neutral-800 focus:border-neutral-800 selection:bg-neutral-500 selection:text-black placeholder:p-0.5 ' 
+                      name="message" 
+                      placeholder='Escreva sua mensagem...'
+                      rows={10}
+                      aria-label='Campo para inserir a sua mensagem'
+                      onChange={handleChange} 
+                      onKeyUp={(e) => setMessage(e.currentTarget.value)}>
+                    </textarea>
                 </div>
                 <div className='w-4/5 m-auto pb-8'>
                     <Button

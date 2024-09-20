@@ -77,7 +77,7 @@ export default function Header() {
               toggle ? 'translate-y-0 opacity-100' : 'hidden translate-y-[-30px] opacity-0'
               } h-auto w-56 rounded-lg dark:bg-neutral-800 bg-neutral-200 absolute z-10 top-20 right-5 transition-all duration-300 ease-in-out`}
     >
-          <Menu direction={true} className='transition-transform delay-200 translate-y-3'/>
+          <Menu direction={true} className='transition-transform delay-200 translate-y-3' setToggleMenu={setToggle} toggle={toggle}/>
         </div>
         {/* Fim menu mobile */}
       </header>

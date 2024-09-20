@@ -18,8 +18,8 @@ export default function AboutMe() {
             target='_blank'
             title='Me segue no GitHub'
           >
-            <Button size='sm' type='button' className='px-2 lg:px-3'>
-              <GithubIcon size={24} />
+            <Button size='sm' type='button' className='px-2 lg:px-3 bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-400 hover:dark:bg-neutral-600'>
+              <GithubIcon size={24} className='text-neutral-900 dark:text-neutral-100'/>
             </Button>
           </Link>
           <Link
@@ -27,16 +27,16 @@ export default function AboutMe() {
             target='_blank'
             title="Vamos ser amigos no Linkedin?"
           >
-            <Button size='sm' type='button' className='px-2 lg:px-3'>
-              <LinkedinIcon size={24} />
+            <Button size='sm' type='button' className='px-2 lg:px-3 bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-400 hover:dark:bg-neutral-600'>
+              <LinkedinIcon size={24} className='text-neutral-900 dark:text-neutral-100' />
             </Button>
           </Link>
           <Link
             href={'mailto:netoflavio97@hotmail.com'}
             title='Me envie um e-mail :)'
           >
-            <Button size='sm' type='button' className='px-2 lg:px-3'>
-              <MailIcon size={24} />
+            <Button size='sm' type='button' className='px-2 lg:px-3 bg-neutral-300 hover:bg-neutral-400 dark:bg-neutral-700 hover:dark:bg-neutral-600'>
+              <MailIcon size={24} className='text-neutral-900 dark:text-neutral-100'/>
             </Button>
           </Link>
         </div>
@@ -46,8 +46,8 @@ export default function AboutMe() {
             download
             className='flex gap-0.5'
           >
-            <Button size='lg' type='button' className='w-full bg-gradient-to-tr from-green-600 to-green-400 rounded-lg hover:bg-green-200'>
-              <p>Baixar currículo</p>
+            <Button size='lg' type='button' className='w-full flex gap-0.5 bg-gradient-to-tr from-green-600 to-green-400 rounded-lg hover:bg-green-200 text-neutral-900 hover:text-neutral-800 dark:hover:text-neutral-700'>
+              <p className=''>Baixar currículo</p>
               <DownloadIcon size={24} />
             </Button>
           </a>

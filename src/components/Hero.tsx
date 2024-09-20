@@ -1,5 +1,6 @@
 import React from 'react'
 import { poppins } from './ui/fonts'
+import Image from 'next/image'
 
 export default function Hero() {
   return (
@@ -15,7 +16,13 @@ export default function Hero() {
         </div>
       </div>
       <div className="w-full pb-2 md:pb-0">
-        <img src="/hero.png" alt="" className='object-contain'/>
+        <img
+          src="/hero.png"
+          alt="Imagem do Hero onde mostra um desenho de uma pessoa mexendo no computador" 
+          className='object-contain'
+          loading='eager'
+          fetchPriority='high'
+        />
       </div>
     </div>
   )

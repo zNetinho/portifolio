@@ -29,9 +29,11 @@ type PropsMenu = {
     children?: React.ReactNode
     className?: string
     direction?: boolean
+    toggle?: boolean
+    setToggleMenu?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function Menu({ children, className, direction = false }: PropsMenu) {
+function Menu({ children, className, direction = false, setToggleMenu = () => {}, toggle }: PropsMenu) {
 
   return (
     <nav>
@@ -39,7 +41,9 @@ function Menu({ children, className, direction = false }: PropsMenu) {
             <ul className={`ml-auto flex flex-${direction? 'col' : 'row'} gap-1`}>
                 {
                 links.map((link) => (
-                    <li key={link.label}>
+                    <li key={link.label}
+                        onClick={() => setToggleMenu(!toggle)}
+                    >
                         <LinkMenu 
                             href={link.href}
                             prefetch={false}
@@ -56,10 +60,6 @@ function Menu({ children, className, direction = false }: PropsMenu) {
   )
 }
 
-function ItemMenu() {
-
-}
-
 type LinkMenuProps = {
     href: string
     prefetch?: boolean
@@ -74,7 +74,8 @@ function LinkMenu({ href, prefetch, children, className }: LinkMenuProps) {
             prefetch={prefetch}
             className={cn([
                 '', "group inline-flex h-3 w-max items-center justify-center rounded-md px-1 py-2 text-sm font-semibold tracking-widest transition-colors text-black hover:text-gray-700 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-neutral_custom/50 data-[state=open]:bg-neutral_custom/50 dark:text-white dark:hover:text-gray-200 dark:focus:bg-gray-800 dark:focus:text-gray-50 hover:no-underline"
-            ])}   
+            ])}
+
         >
             {children}
         </Link>

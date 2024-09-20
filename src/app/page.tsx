@@ -21,7 +21,7 @@ export default function Home() {
       </section>
       <section id="skills">
         <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Habilidades</h2>
-        <div className='overflow-x-scroll scroll-smooth snap-mandatory snap-x scrollbar'>
+        <div className='overflow-x-scroll scroll-smooth snap-mandatory snap-x scrollbar dark:scrollbar-dark'>
           <Carousel className='flex gap-1'>
             {skills.map((skill) => (
               <CardCarousel key={skill.name} className='w-max-[100px] min-h-48 max-h-48 p-1 flex flex-col items-center justify-center'>
@@ -50,9 +50,7 @@ export default function Home() {
         <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Entre em contato comigo !</h2>
         <FormContact />
       </section>
-      <div className="sticky float-right justify-end p-1">
-        <ModeToggle />
-      </div>
+      
     </motion.div>
   )
 }

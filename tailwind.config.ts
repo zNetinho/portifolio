@@ -60,6 +60,8 @@ const config = {
         typescript: '#2b7489',
         nodejs: '#43853d',
         react: '#61dafb',
+        nextjs: '#000000',
+        nestjs: '#E0234E',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',

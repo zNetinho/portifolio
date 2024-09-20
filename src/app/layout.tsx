@@ -8,6 +8,8 @@ import { ThemeProvider } from '@/components/theme-provider'
 import Page from '@/components/layout/Page'
 import React from 'react'
 import TemplateTransition from '@/components/layout/Transition'
+import { Toaster } from '@/components/ui/toaster';
+import { ModeToggle } from '@/components/toggle-theme';
 
 
 export const metadata: Metadata = {
@@ -43,8 +45,12 @@ export default function RootLayout({
               {children}
               <Analytics />
               <SpeedInsights />
+              <Toaster />
             </TemplateTransition>
           </Page>
+          <div className="relative float-right justify-end p-1">
+            <ModeToggle />
+          </div>
         </ThemeProvider>
       </body>
     </html>

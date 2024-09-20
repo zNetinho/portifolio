@@ -63,6 +63,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -75,20 +76,44 @@
   }
 
   .scrollbar:scrollbar-color {
-    background-color: #7f7d7d;
+    background-color: #b3b2b2;
   }
 
   .scrollbar::-webkit-scrollbar-track {
     border-radius: 100vh;
-    background: #363430;
+    background: #e4e4e4;
   }
 
   .scrollbar::-webkit-scrollbar-thumb {
-    background: #7f7d7d;
+    background: #b3b2b2;
     border-radius: 100vh;
   }
 
   .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+  }
+
+  /* Dark */
+  .scrollbar-dark::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  .scrollbar-dark:scrollbar-color {
+    background-color: #7f7d7d;
+  }
+
+  .scrollbar-dark::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #363430;
+  }
+
+  .scrollbar-dark::-webkit-scrollbar-thumb {
+    background: #7f7d7d;
+    border-radius: 100vh;
+  }
+
+  .scrollbar-dark::-webkit-scrollbar-thumb:hover {
     background: #5c5c5c;
   }
 }

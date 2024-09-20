@@ -123,7 +123,7 @@ function FlagsLanguages({ languages }: FlagLanguage) {
     return (
         <div className="flex gap-1">
             {languages.map((language) => (
-                <span key={language} className={`bg-${language.toLowerCase()} text-zinc-800 font-medium py-0.5 px-0.5 rounded-lg`}>
+                <span key={language} className={cn(['text-xs', `bg-${language.toLowerCase().replace(".", "")} text-neutral-50 font-medium py-[4px] px-0.5 rounded-lg`])}>
                     {language}
                 </span>
             ))}
