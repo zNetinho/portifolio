@@ -49,6 +49,7 @@ function GalleryProjects({ children, className, projects }: GenericsProps) {
                         </TitleProject>
                         <FlagsLanguages 
                             languages={project.languages}
+
                         />
                         <DescriptionProject>
                             {project.description}
@@ -60,7 +61,7 @@ function GalleryProjects({ children, className, projects }: GenericsProps) {
                                 className='m-auto'
                                 title={`Veja o código do ${project.title}`}
                             >
-                                <GithubIcon className='' size={24} />
+                                <GithubIcon className='text-white' size={24} />
                             </LinkProject>
 
                         </div>
@@ -121,7 +122,7 @@ type FlagLanguage = {
 }
 function FlagsLanguages({ languages }: FlagLanguage) {
     return (
-        <div className="flex gap-1">
+        <div className="flex flex-wrap gap-1">
             {languages.map((language) => (
                 <span key={language} className={cn(['text-xs', `bg-${language.toLowerCase().replace(".", "")} text-neutral-50 font-medium py-[4px] px-0.5 rounded-lg`])}>
                     {language}

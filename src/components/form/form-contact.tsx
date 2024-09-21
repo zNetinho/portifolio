@@ -1,10 +1,7 @@
 import React, { FormEvent, useState } from 'react'
 import { Button } from '../ui/button'
 import { z } from 'zod'
-import { schemaFormContact } from './schema/schema-form-contact'
 import { useToast } from '@/components/hooks/use-toast'
-
-export type messageContact = z.infer<typeof schemaFormContact>
 export default function FormContact() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -78,13 +75,13 @@ export default function FormContact() {
           method='post'
           className=''
         >
-            <div className='flex flex-col gap-6 justify-around rounded-lg border-[1px] border-neutral-400 p-2'>
-                <div className='flex flex-col w-full px-20 py-5'>
+            <div className='flex flex-col gap-6 justify-around rounded-lg border-[1px] border-neutral-400 p-1 lg:p-2'>
+                <div className='flex flex-col w-full px-9 lg:px-20 py-5'>
                     <label htmlFor='name'>Nome:</label>
                     <input 
                         name='name'
                         type='text' 
-                        className='p-[10px] border-[1px] border-neutral-400 rounded-lg placeholder:text-neutral-300 focus:outline-neutral-800 focus:border-neutral-800 selection:bg-white selection:text-black'
+                        className='w-full p-[10px] border-[1px] border-neutral-400 rounded-lg placeholder:text-neutral-300 focus:outline-neutral-800 focus:border-neutral-800 selection:bg-white selection:text-black'
                         placeholder='Seu nome'
                         aria-label='Campo para inserir o seu nome'
                         onChange={handleChange}
@@ -92,7 +89,7 @@ export default function FormContact() {
                         onKeyUp={(e) => setName(e.currentTarget.value)}
                     />
                 </div>
-                <div className='flex flex-col w-full px-20 py-5'>
+                <div className='flex flex-col w-full px-9 lg:px-20 py-5'>
                     <label >E-mail:</label>
                     <input
                         type='email'
@@ -106,7 +103,7 @@ export default function FormContact() {
                         onKeyUp={(e) => setEmail(e.currentTarget.value)}
                     />
                 </div>
-                <div className='flex flex-col w-full px-20 py-5'>
+                <div className='flex flex-col w-full px-9 lg:px-20 py-5'>
                     <p>Envie sua mensagem :)</p>
                     <textarea 
                       className='border-[1px] border-neutral-400 rounded-lg placeholder:text-neutral-300 focus:outline-neutral-800 focus:border-neutral-800 selection:bg-neutral-500 selection:text-black placeholder:p-0.5 ' 

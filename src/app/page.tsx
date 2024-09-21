@@ -7,6 +7,7 @@ import { ModeToggle } from '@/components/toggle-theme'
 import * as motion from "framer-motion/client"
 import { projects, skills } from '../../constants'
 import FormContact from '@/components/form/form-contact'
+import { Education } from '@/components/education'
 
 export default function Home() {
   return (
@@ -47,10 +48,12 @@ export default function Home() {
         />
       </motion.section>
       <section>
+        <Education />
+      </section>
+      <section>
         <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Entre em contato comigo !</h2>
         <FormContact />
       </section>
-      
     </motion.div>
   )
 }

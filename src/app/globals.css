@@ -117,3 +117,39 @@
     background: #5c5c5c;
   }
 }
+
+.bg-javascript {
+  background-color: #f1e05a;
+}
+
+.bg-typescript {
+  background-color: #3178c6;
+}
+
+.bg-html {
+  background-color: #e34c26;
+}
+
+.bg-css {
+  background-color: #563d7c;
+}
+
+.bg-react {
+  background-color: #61dafb;
+}
+
+.bg-nestjs {
+  background-color: #E0234E;
+}
+
+.bg-nextjs {
+  background-color: #000000;
+}
+
+.bg-python {
+  background-color: #3572A5;
+}
+
+.bg-nodejs {
+  background-color: #43853d;
+}
