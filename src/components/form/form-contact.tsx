@@ -54,6 +54,13 @@ export default function FormContact() {
               message: 'Thank you for reaching out to us.'
             });
           } else {
+            toast({
+              title: "Erro ao enviar o e-mail, por favor tente novamente 😔",
+              description: "Na minha máquina funciona 😁",
+              duration: 2000,
+              type: 'foreground',
+              className: 'bg-red-300 text-white text-lg w-72 h-28 rounded-md text-left p-2'
+            })
             setResponse({
               type: 'error',
               message: json.message
@@ -80,8 +87,10 @@ export default function FormContact() {
                     <label htmlFor='name'>Nome:</label>
                     <input 
                         name='name'
-                        type='text' 
-                        className='w-full p-[10px] border-[1px] border-neutral-400 rounded-lg placeholder:text-neutral-300 focus:outline-neutral-800 focus:border-neutral-800 selection:bg-white selection:text-black'
+                        type='text'
+                        min={3}
+                        max={150}
+                        className='w-full p-[10px] border-[1px] border-neutral-400 rounded-lg placeholder:text-neutral-300 focus:outline-neutral-400 focus:border-neutral-400 selection:bg-white selection:text-black'
                         placeholder='Seu nome'
                         aria-label='Campo para inserir o seu nome'
                         onChange={handleChange}
@@ -93,20 +102,23 @@ export default function FormContact() {
                     <label >E-mail:</label>
                     <input
                         type='email'
-                        className='p-[10px] border-[1px] border-neutral-400  rounded-lg placeholder:text-neutral-300 focus:outline-neutral-800 focus:border-neutral-800 selection:bg-white selection:text-black'
+                        className='p-[10px] border-[1px] border-neutral-400 rounded-lg placeholder:text-neutral-300 focus:outline-neutral-400 focus:border-neutral-400 selection:bg-white selection:text-black'
                         pattern='[^@\s]+@[^@\s]+\.[^@\s]+'
                         placeholder='Seu melhor e-mail'
+                        min={1}
+                        max={300}
                         name='email'
                         aria-label='Campo para inserir o seu email'
                         required
                         onChange={handleChange}
                         onKeyUp={(e) => setEmail(e.currentTarget.value)}
                     />
+                    
                 </div>
                 <div className='flex flex-col w-full px-9 lg:px-20 py-5'>
                     <p>Envie sua mensagem :)</p>
                     <textarea 
-                      className='border-[1px] border-neutral-400 rounded-lg placeholder:text-neutral-300 focus:outline-neutral-800 focus:border-neutral-800 selection:bg-neutral-500 selection:text-black placeholder:p-0.5 ' 
+                      className='border-[1px] border-neutral-400 rounded-lg placeholder:text-neutral-300 focus:outline-neutral-400 focus:border-neutral-400 selection:bg-neutral-500 selection:text-black p-0.5 ' 
                       name="message" 
                       placeholder='Escreva sua mensagem...'
                       rows={10}
@@ -114,6 +126,7 @@ export default function FormContact() {
                       onChange={handleChange} 
                       onKeyUp={(e) => setMessage(e.currentTarget.value)}>
                     </textarea>
+                    <span className="text-xs text-neutral-400 mt-0.5">A mensagem deve ter no máximo 300 caracteres.</span>
                 </div>
                 <div className='w-4/5 m-auto pb-8'>
                     <Button

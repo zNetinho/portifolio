@@ -16,7 +16,7 @@ export default function Home() {
         <div className='pb-2 md:pb-3 w-full lg:w-1/2'>
           <Hero />
         </div>
-        <div className="pb-4 md:pb-3 w-full lg:w-1/2 px-1">
+        <div id="sobre" className="pb-4 md:pb-3 w-full lg:w-1/2 px-1">
           <AboutMe />
         </div>
       </section>
@@ -47,10 +47,11 @@ export default function Home() {
           projects={projects}
         />
       </motion.section>
-      <section>
+      <section className='py-2'>
+      <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Formações</h2>
         <Education />
       </section>
-      <section>
+      <section id='contato'>
         <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Entre em contato comigo !</h2>
         <FormContact />
       </section>

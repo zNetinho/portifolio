@@ -4,7 +4,8 @@
   "editor.tabCompletion": "on",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.ts": "always",
+    "source.fixAll.eslint": "always"
   },
   "editor.defaultFormatter": "vscode.typescript-language-features",
   "editor.tabSize": 4,
