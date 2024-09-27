@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import { GenericsProps } from '@/types/common';
 import { motion, Variants } from "framer-motion";
 import React, { useState } from 'react';
+import { courses, graduate, GraduteType } from '../../constants';
 
 const itemVariants: Variants = {
     open: {
@@ -19,13 +20,13 @@ type Accordion = {
 
 function Accordion({children, className, isOpen }: GenericsProps<Accordion>) {
    return (
-    <motion.nav
+    <motion.div
         initial={false}
         animate={isOpen ? "open" : "closed"}
         className={cn(['', className])}
     >
         {children}
-    </motion.nav>
+    </motion.div>
    )
 }
 
@@ -100,13 +101,14 @@ function AccordionItem({ children, className }: GenericsProps) {
 }
 
 interface ButtonProps extends React.ComponentProps<'button'> {
-    onClick: () => void
+    onClick?: () => void
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-    isOpen: boolean
+    isOpen?: boolean
 }
 
-function AccordionButton({ children, className, setIsOpen, isOpen }: GenericsProps<ButtonProps>) {
 
+function AccordionButton({ children, className, setIsOpen, isOpen }: GenericsProps<ButtonProps>) {
+    
     return (
         <motion.button
             className={cn(['flex', className])}
@@ -121,7 +123,7 @@ function AccordionButton({ children, className, setIsOpen, isOpen }: GenericsPro
 function AccordionTitle({children, className }: GenericsProps) {
     return (
         <h3 
-            className={cn(['text-lg', className])}
+            className={cn(['text-lg dark:text-neutral-300 dark:hover:text-neutral-400', className])}
         >
             {children}
         </h3>
@@ -136,43 +138,108 @@ function AccordionText({children, className }: GenericsProps) {
     )
 }
 
-function AccordionTeste() {
+const educations = graduate
+const programs = courses
+
+
+function AccordionGraduate() {
 
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <Accordion
-            isOpen={isOpen}
-        >
-            <AccordionButton
-                onClick={() => setIsOpen(!isOpen)}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                className='w-full py-5 justify-between items-center text-neutral-800 border-[1px] rounded-md px-0.5'
-            >
-                    <AccordionTitle
-                        className='font-semibold text-xl'
+            <div>
+                { educations.map((course: GraduteType) => (
+                <Accordion
+                    isOpen={isOpen}
+                    key={course.name}
+                >
+                    <AccordionButton
+                        onClick={() => setIsOpen(!isOpen)}
+                        isOpen={isOpen}
+                        setIsOpen={setIsOpen}
+                        className='w-full py-5 justify-between items-center text-neutral-800 border-[1px] rounded-md px-0.5 my-2'
                     >
-                        Ensino médio
-                    </AccordionTitle>
-                <AccordionWrapper>
-                    <AccordionArrowIcon />
-                </AccordionWrapper>
-            </AccordionButton>
-            <AccordionList
-                isOpen={isOpen}
-            >
-                <AccordionItem>
-                    <AccordionText
-                        className='py-1 px-0.5'
+                            <AccordionTitle
+                                className='font-semibold text-xl'
+                            >
+                                { course.name }
+                            </AccordionTitle>
+                        <AccordionWrapper>
+                            <AccordionArrowIcon />
+                        </AccordionWrapper>
+                    </AccordionButton>
+                    <AccordionList
+                        isOpen={isOpen}
                     >
-                    {/* TODO: Atualizar arquivo constants com dados de formação, para renderizar nos accordion */}
-                    </AccordionText>
-                </AccordionItem>
-            </AccordionList>
-        </Accordion>
+                        <AccordionItem>
+                            <AccordionText
+                                className='py-1 px-0.5'
+                            >
+                                {course.description}
+                            {/* TODO: Atualizar arquivo constants com dados de formação, para renderizar nos accordion */}
+                            </AccordionText>
+                        </AccordionItem>
+                    </AccordionList>
+                </Accordion>
+            ))}
+        </div>
     )
 }
 
-export { AccordionTeste };
+function AccordionCourses() {
+
+    const [isOpen, setIsOpen] = useState(false)
+
+    return (
+            <div>
+                { programs.map((course: GraduteType) => (
+                <Accordion
+                    isOpen={isOpen}
+                    key={course.name}
+                >
+                    <AccordionButton
+                        onClick={() => setIsOpen(!isOpen)}
+                        isOpen={isOpen}
+                        setIsOpen={setIsOpen}
+                        className='w-full py-5 justify-between items-center text-neutral-800 border-[1px] rounded-md px-0.5 my-2'
+                    >
+                            <AccordionTitle
+                                className='font-semibold text-xl'
+                            >
+                                { course.name }
+                            </AccordionTitle>
+                        <AccordionWrapper>
+                            <AccordionArrowIcon />
+                        </AccordionWrapper>
+                    </AccordionButton>
+                    <AccordionList
+                        isOpen={isOpen}
+                    >
+                        <AccordionItem>
+                            <AccordionText
+                                className='py-1 px-0.5'
+                            >
+                                {course.description}
+                            {/* TODO: Atualizar arquivo constants com dados de formação, para renderizar nos accordion */}
+                            </AccordionText>
+                        </AccordionItem>
+                    </AccordionList>
+                </Accordion>
+            ))}
+        </div>
+    )
+}
+
+export { 
+    AccordionArrowIcon,
+    AccordionGraduate,
+    AccordionWrapper,
+    AccordionCourses,
+    AccordionButton,
+    AccordionTitle,
+    AccordionText,
+    AccordionItem,
+    AccordionList,
+    Accordion
+};
 

@@ -164,3 +164,37 @@ export const projects: ProjectType[] = [
   // }
 ]
 
+export type GraduteType = {
+  name: string
+  description: string
+  dataOfconclusion: string
+  badge?: string
+}
+
+export const graduate: GraduteType[] = [
+  {
+    name: "Ensino médio",
+    dataOfconclusion: "12/2015",
+    description: "Conclui o ensino médio em 2015 e depois fiquei um tempo fora das instituição, retornando depois com inicio da graduação.",
+  },
+  {
+    name: "Ensino superior",
+    dataOfconclusion: "10/2025",
+    description: "Estou estudando analise e desenvolvimento de sistemas na Cruzeiro do sul, previsto a conclusão para 10/2025"
+  },
+]
+
+export const courses: GraduteType[] = [
+  {
+    name: "AWS re/Start Graduate",
+    description: "O AWS re/Start é um programa de desenvolvimento de habilidades e treinamento profissional que prepara os alunos para carreiras na nuvem. Cada turma, apoiada por mentores profissionais e instrutores credenciados, conclui o treinamento com aprendizado baseado em cenários do mundo real, laboratórios práticos e cursos.",
+    dataOfconclusion: "06/2024",
+    badge: "https://images.credly.com/images/44e2c252-5d19-4574-9646-005f7225bf53/image.png"
+  },
+  {
+    name: "Desenvolvimento Web",
+    description: "Curso de 3 semanas ministrado pelo Abimael Curi, o curso foi organizado pela liveSEO, para fornecer aos alunos uma imersão no desenvolvimento web, o curso aconteceu de forma presencial, dentro de 3 semanas foram abordados tópicos como HTML, CSS, JS, acessibilidade, responsividade, melhores práticas de desenvolvimento, boas práticas de SEO.",
+    dataOfconclusion: "06/2022",
+    badge: "/liveSEO-logo-aplicacao-principal-1-1.png"
+  }
+]

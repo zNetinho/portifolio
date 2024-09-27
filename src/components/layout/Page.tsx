@@ -9,7 +9,7 @@ function Page(props: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-        <motion.main className="container min-h-screen h-full px-1 lg:px-2">
+        <motion.main className="container w-full min-h-screen h-full px-1 lg:px-2">
           {props.children}
         </motion.main>
       <Footer />

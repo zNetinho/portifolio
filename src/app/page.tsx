@@ -1,17 +1,16 @@
 "use client"
 import AboutMe from '@/components/AboutMe'
 import { CardCarousel, Carousel, DescriptionCardCarousel, PhotoCardCarousel, TitleCardCarousel } from '@/components/Carousel'
+import { Education } from '@/components/education'
+import FormContact from '@/components/form/form-contact'
 import { GalleryProjects } from '@/components/gallery-projects'
 import Hero from '@/components/Hero'
-import { ModeToggle } from '@/components/toggle-theme'
 import * as motion from "framer-motion/client"
 import { projects, skills } from '../../constants'
-import FormContact from '@/components/form/form-contact'
-import { Education } from '@/components/education'
 
 export default function Home() {
   return (
-    <motion.div initial="hidden" animate="visible" exit={{ opacity: 0, transition: { duration: 1 } }} variants={{ visible: { transition: { staggerChildren: 0 } } }}>
+    <motion.div className='max-w-full' initial="hidden" animate="visible" exit={{ opacity: 0, transition: { duration: 1 } }} variants={{ visible: { transition: { staggerChildren: 0 } } }}>
       <section className='lg:flex lg:flex-row justify-center items-center gap-3'>
         <div className='pb-2 md:pb-3 w-full lg:w-1/2'>
           <Hero />
@@ -52,7 +51,7 @@ export default function Home() {
         <Education />
       </section>
       <section id='contato'>
-        <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Entre em contato comigo !</h2>
+        <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Quer falar comigo?</h2>
         <FormContact />
       </section>
     </motion.div>
