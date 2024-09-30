@@ -14,20 +14,20 @@ const itemVariants: Variants = {
     closed: { opacity: 0, y: 20, transition: { duration: 0.2 } }
 };
 
-type Accordion = {
+type AccordionProps = {
     isOpen: boolean;
 }
 
-function Accordion({children, className, isOpen }: GenericsProps<Accordion>) {
-   return (
-    <motion.div
-        initial={false}
-        animate={isOpen ? "open" : "closed"}
-        className={cn(['', className])}
-    >
-        {children}
-    </motion.div>
-   )
+function Accordion({ children, className, isOpen }: GenericsProps<AccordionProps>) {
+    return (
+        <motion.div
+            initial={false}
+            animate={isOpen ? "open" : "closed"}
+            className={cn(['', className])}
+        >
+            {children}
+        </motion.div>
+    )
 }
 
 function AccordionArrowIcon() {
@@ -55,13 +55,13 @@ function AccordionWrapper({ children, className }: GenericsProps) {
 }
 
 type AccordionListProps = {
-    isOpen: boolean
+    isOpen: boolean;
 }
 
 function AccordionList({ children, className, isOpen }: GenericsProps<AccordionListProps>) {
     return (
         <motion.ul
-            className={cn([`min-h-[1px] ${ isOpen ? "block" : "hidden"}`], className)}
+            className={cn([`min-h-[1px] ${isOpen ? "block" : "hidden"} border-[1px] rounded-md`], className)}
             variants={{
                 open: {
                     clipPath: "inset(0% 0% 0% 0% round 10px)",
@@ -89,11 +89,13 @@ function AccordionList({ children, className, isOpen }: GenericsProps<AccordionL
     )
 }
 
+
 function AccordionItem({ children, className }: GenericsProps) {
     return (
-        <motion.li 
+        <motion.li
             variants={itemVariants}
-            className={cn(['', className])}
+            className={cn([className, ''])}
+            data-open={false}
         >
             {children}
         </motion.li>
@@ -101,14 +103,12 @@ function AccordionItem({ children, className }: GenericsProps) {
 }
 
 interface ButtonProps extends React.ComponentProps<'button'> {
-    onClick?: () => void
-    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-    isOpen?: boolean
+    onClick?: () => void;
+    isOpen?: boolean;
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-
 function AccordionButton({ children, className, setIsOpen, isOpen }: GenericsProps<ButtonProps>) {
-    
     return (
         <motion.button
             className={cn(['flex', className])}
@@ -120,9 +120,9 @@ function AccordionButton({ children, className, setIsOpen, isOpen }: GenericsPro
     )
 }
 
-function AccordionTitle({children, className }: GenericsProps) {
+function AccordionTitle({ children, className }: GenericsProps) {
     return (
-        <h3 
+        <h3
             className={cn(['text-lg dark:text-neutral-300 dark:hover:text-neutral-400', className])}
         >
             {children}
@@ -130,53 +130,67 @@ function AccordionTitle({children, className }: GenericsProps) {
     )
 }
 
-function AccordionText({children, className }: GenericsProps) {
+function AccordionText({ children, className }: GenericsProps) {
     return (
-        <p className={cn(['', className])}>
-            { children }
-        </p>
+        <div className={cn(['border-[1px] rounded-md', className])}>
+            {children}
+        </div>
     )
 }
 
-const educations = graduate
-const programs = courses
+const educations = graduate;
+const programs = courses;
+
+/**
+     * Toggle accordion by providing state index with 
+     * openIndexes.
+     * If the index is already present in openIndexes, remove it.
+     * If the index is not present in openIndexes, add it.
+     * @param index The index of the accordion to toggle.
+     */
+const toggleAccordion = (index: number, setOpenIndexes: React.Dispatch<React.SetStateAction<number[]>>) => {
+    setOpenIndexes((prev) =>
+        prev.includes(index)
+            ? prev.filter((i) => i !== index)
+            : [...prev, index]
+    );
+};
 
 
 function AccordionGraduate() {
-
-    const [isOpen, setIsOpen] = useState(false)
+    const [openIndexes, setOpenIndexes] = useState<number[]>([]);
 
     return (
-            <div>
-                { educations.map((course: GraduteType) => (
+        <div>
+            {educations.map((course: GraduteType, index: number) => (
                 <Accordion
-                    isOpen={isOpen}
+                    isOpen={openIndexes.includes(index)}
                     key={course.name}
                 >
                     <AccordionButton
-                        onClick={() => setIsOpen(!isOpen)}
-                        isOpen={isOpen}
-                        setIsOpen={setIsOpen}
-                        className='w-full py-5 justify-between items-center text-neutral-800 border-[1px] rounded-md px-0.5 my-2'
+                        onClick={() => toggleAccordion(index, setOpenIndexes)}
+                        isOpen={openIndexes.includes(index)}
+                        setIsOpen={() => toggleAccordion(index, setOpenIndexes)}
+                        className='w-full flex py-5 my-1 justify-between items-center text-neutral-800 border-[1px] rounded-md px-0.5 dark:text-neutral-300 dark:border-neutral-800'
                     >
-                            <AccordionTitle
-                                className='font-semibold text-xl'
-                            >
-                                { course.name }
-                            </AccordionTitle>
+                        <AccordionTitle className='font-semibold text-xl'>
+                            {course.name}
+                        </AccordionTitle>
                         <AccordionWrapper>
                             <AccordionArrowIcon />
                         </AccordionWrapper>
                     </AccordionButton>
-                    <AccordionList
-                        isOpen={isOpen}
-                    >
+                    <AccordionList isOpen={openIndexes.includes(index)}>
                         <AccordionItem>
-                            <AccordionText
-                                className='py-1 px-0.5'
-                            >
-                                {course.description}
-                            {/* TODO: Atualizar arquivo constants com dados de formação, para renderizar nos accordion */}
+                            <AccordionText className='flex justify-between gap-5 py-1 px-0.5'>
+                                <div className="flex flex-col w-3/4">
+                                    <p className='text-xl leading-4'>{course.nameOfInstitute}</p>
+                                    <br />
+                                    {course.description}
+                                </div>
+                                <p className='flex-1 text-end text-sm font-normal text-neutral-500'>
+                                    Data de conclusão: {course.dataOfconclusion}
+                                </p>
                             </AccordionText>
                         </AccordionItem>
                     </AccordionList>
@@ -185,42 +199,42 @@ function AccordionGraduate() {
         </div>
     )
 }
+
 
 function AccordionCourses() {
-
-    const [isOpen, setIsOpen] = useState(false)
+    const [openIndexes, setOpenIndexes] = useState<number[]>([]);
 
     return (
-            <div>
-                { programs.map((course: GraduteType) => (
+        <div>
+            {programs.map((course: GraduteType, index: number) => (
                 <Accordion
-                    isOpen={isOpen}
+                    isOpen={openIndexes.includes(index)}
                     key={course.name}
                 >
                     <AccordionButton
-                        onClick={() => setIsOpen(!isOpen)}
-                        isOpen={isOpen}
-                        setIsOpen={setIsOpen}
-                        className='w-full py-5 justify-between items-center text-neutral-800 border-[1px] rounded-md px-0.5 my-2'
+                        onClick={() => toggleAccordion(index, setOpenIndexes)}
+                        isOpen={openIndexes.includes(index)}
+                        setIsOpen={() => toggleAccordion(index, setOpenIndexes)}
+                        className='w-full flex py-5 my-1 justify-between items-center text-neutral-800 border-[1px] rounded-md px-0.5 dark:text-neutral-300 dark:border-neutral-800'
                     >
-                            <AccordionTitle
-                                className='font-semibold text-xl'
-                            >
-                                { course.name }
-                            </AccordionTitle>
+                        <AccordionTitle className='font-semibold text-xl'>
+                            {course.name}
+                        </AccordionTitle>
                         <AccordionWrapper>
                             <AccordionArrowIcon />
                         </AccordionWrapper>
                     </AccordionButton>
-                    <AccordionList
-                        isOpen={isOpen}
-                    >
-                        <AccordionItem>
-                            <AccordionText
-                                className='py-1 px-0.5'
-                            >
-                                {course.description}
-                            {/* TODO: Atualizar arquivo constants com dados de formação, para renderizar nos accordion */}
+                    <AccordionList isOpen={openIndexes.includes(index)}>
+                        <AccordionItem className='border-solid border-[1px] rounded-md'>
+                            <AccordionText className='flex justify-between gap-5 py-1 px-0.5'>
+                                <div className="flex flex-col w-3/4">
+                                    <span className='text-xl leading-4'>{course.nameOfInstitute}</span>
+                                    <br />
+                                    {course.description}
+                                </div>
+                                <p className='flex-1 text-end text-sm font-normal text-neutral-500'>
+                                    Data de conclusão: {course.dataOfconclusion}
+                                </p>
                             </AccordionText>
                         </AccordionItem>
                     </AccordionList>
@@ -230,7 +244,7 @@ function AccordionCourses() {
     )
 }
 
-export { 
+export {
     AccordionArrowIcon,
     AccordionGraduate,
     AccordionWrapper,
@@ -242,4 +256,3 @@ export {
     AccordionList,
     Accordion
 };
-

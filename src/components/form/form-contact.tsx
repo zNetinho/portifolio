@@ -80,7 +80,6 @@ export default function FormContact() {
           onSubmit={handleSend}
           action='https://api.staticforms.xyz/submit'
           method='post'
-          className='w-full flex'
         >
             <div className='flex flex-col gap-6 justify-around rounded-lg border-[1px] border-neutral-400 lg:p-2'>
                 <div className='flex flex-col w-full px-9 lg:px-20 py-5'>
