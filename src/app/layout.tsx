@@ -32,7 +32,9 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
+      <head>
+        <meta name="google-site-verification" content="YjUifNKUAPVJprTnU97kBfMVrHLQNiG87OigmKGLSHc" />
+      </head>
       <body className={`min-h-screen h-full ${poppins.className}`}>
         <ThemeProvider
           attribute="class"
