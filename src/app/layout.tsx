@@ -52,32 +52,21 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Antonio Flavio de Andrade Neto",
-              "jobTitle": "Web Developer & SEO Analyst",
-              "worksFor": {
-                "@type": "Organization",
-                "name": "liveSEO"
-              },
-              "email": "mailto:antonio@email.com",
-              "sameAs": [
-                "https://www.linkedin.com/in/antonioflavio",
-                "https://github.com/zNetinho"
-              ]
-            })
-          }}
-        />
-        
-        {/* Dados Estruturados para Website */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "name": "Antonio Flavio Portfolio",
-              "url": "https://portifolio-mocha-psi-72.vercel.app",
-              "description": "Portfólio de Antonio Flavio, desenvolvedor web e analista de SEO."
+              "@type": "ProfilePage",
+              "dateCreated": "2024-01-01T07:00:00-05:00",
+              "dateModified": "2024-10-01T07:00:00-05:00",
+              "mainEntity": {
+                "@type": "Person",
+                "name": "Antonio Flavio de Andrade Neto",
+                "alternateName": "Netinho",
+                "identifier": "99999999",
+                "description": "Web Developer fullstack & Analista SEO",
+                "image": "https://drive.google.com/file/d/1ySNiBYQfEYpALvqesW0hmknVCDnP_HXt/view?usp=drive_link",
+                "sameAs": [
+                  "https://www.linkedin.com/in/antonioflavio",
+                  "https://github.com/zNetinho"
+                ]
+              }
             })
           }}
         />
@@ -95,7 +84,7 @@ export default function RootLayout({
               <Toaster />
             </TemplateTransition>
           </Page>
-          <div className="relative float-right justify-end p-1">
+          <div className="sticky bottom-0 float-right justify-end p-1">
             <ModeToggle />
           </div>
         </ThemeProvider>
