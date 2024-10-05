@@ -9,9 +9,10 @@ const itemVariants: Variants = {
     open: {
         opacity: 1,
         y: 0,
+        scale: 1,
         transition: { type: "spring", stiffness: 300, damping: 24 }
     },
-    closed: { opacity: 0, y: 20, transition: { duration: 0.2 } }
+    closed: { opacity: 0, y: 20, transition: { duration: 0.7 }}
 };
 
 type AccordionProps = {
@@ -78,7 +79,9 @@ function AccordionList({ children, className, isOpen }: GenericsProps<AccordionL
                     transition: {
                         type: "spring",
                         bounce: 0,
-                        duration: 0.3
+                        duration: 0.7,
+                        delayChildren: 0.5,
+                        staggerChildren: 0.08
                     }
                 }
             }}
@@ -123,7 +126,7 @@ function AccordionButton({ children, className, setIsOpen, isOpen }: GenericsPro
 function AccordionTitle({ children, className }: GenericsProps) {
     return (
         <h3
-            className={cn(['text-lg dark:text-neutral-300 dark:hover:text-neutral-400', className])}
+            className={cn(['border-neutral-400 text-lg dark:text-neutral-300 dark:hover:text-neutral-400 mb-0', className])}
         >
             {children}
         </h3>
@@ -132,7 +135,7 @@ function AccordionTitle({ children, className }: GenericsProps) {
 
 function AccordionText({ children, className }: GenericsProps) {
     return (
-        <div className={cn(['border-[1px] rounded-md', className])}>
+        <div className={cn(['border-neutral-600 border-[1px] border-t-0 rounded-md', className])}>
             {children}
         </div>
     )
@@ -148,7 +151,13 @@ const programs = courses;
      * If the index is not present in openIndexes, add it.
      * @param index The index of the accordion to toggle.
      */
-const toggleAccordion = (index: number, setOpenIndexes: React.Dispatch<React.SetStateAction<number[]>>) => {
+const toggleAccordion = (
+    index: number,
+    setOpenIndexes: React.Dispatch<React.SetStateAction<number[]>>,
+    setDataOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    dataOpen: boolean
+) => {
+    setDataOpen(!dataOpen)
     setOpenIndexes((prev) =>
         prev.includes(index)
             ? prev.filter((i) => i !== index)
@@ -159,6 +168,7 @@ const toggleAccordion = (index: number, setOpenIndexes: React.Dispatch<React.Set
 
 function AccordionGraduate() {
     const [openIndexes, setOpenIndexes] = useState<number[]>([]);
+    const [dataOpen, setDataOpen] = useState<boolean>(false)
 
     return (
         <div>
@@ -168,10 +178,11 @@ function AccordionGraduate() {
                     key={course.name}
                 >
                     <AccordionButton
-                        onClick={() => toggleAccordion(index, setOpenIndexes)}
+                        onClick={() => toggleAccordion(index, setOpenIndexes, setDataOpen, dataOpen)}
                         isOpen={openIndexes.includes(index)}
-                        setIsOpen={() => toggleAccordion(index, setOpenIndexes)}
-                        className='w-full flex py-5 my-1 justify-between items-center text-neutral-800 border-[1px] rounded-md px-0.5 dark:text-neutral-300 dark:border-neutral-800'
+                        setIsOpen={() => toggleAccordion(index, setOpenIndexes, setDataOpen, dataOpen)}
+                        className={`w-full flex py-5 mt-1 justify-between items-center text-neutral-800 border-[1px] ${dataOpen ? 'mb-0 border-b-0' : 'mb-1' } rounded-md px-0.5 dark:text-neutral-300 dark:border-neutral-800`}
+                        data-open={false}
                     >
                         <AccordionTitle className='font-semibold text-xl'>
                             {course.name}
@@ -203,6 +214,7 @@ function AccordionGraduate() {
 
 function AccordionCourses() {
     const [openIndexes, setOpenIndexes] = useState<number[]>([]);
+    const [dataOpen, setDataOpen] = useState<boolean>(false)
 
     return (
         <div>
@@ -212,9 +224,9 @@ function AccordionCourses() {
                     key={course.name}
                 >
                     <AccordionButton
-                        onClick={() => toggleAccordion(index, setOpenIndexes)}
+                        onClick={() => toggleAccordion(index, setOpenIndexes, setDataOpen, dataOpen)}
                         isOpen={openIndexes.includes(index)}
-                        setIsOpen={() => toggleAccordion(index, setOpenIndexes)}
+                        setIsOpen={() => toggleAccordion(index, setOpenIndexes, setDataOpen, dataOpen)}
                         className='w-full flex py-5 my-1 justify-between items-center text-neutral-800 border-[1px] rounded-md px-0.5 dark:text-neutral-300 dark:border-neutral-800'
                     >
                         <AccordionTitle className='font-semibold text-xl'>

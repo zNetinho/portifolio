@@ -11,7 +11,7 @@ import { projects, skills } from '../../constants'
 export default function Home() {
   return (
     <motion.div className='max-w-full' initial="hidden" animate="visible" exit={{ opacity: 0, transition: { duration: 1 } }} variants={{ visible: { transition: { staggerChildren: 0 } } }}>
-      <section className='lg:flex lg:flex-row justify-center items-center gap-3'>
+      <section className='lg:flex lg:flex-row justify-center items-center gap-3 py-2'>
         <div className='pb-2 md:pb-3 w-full lg:w-1/2'>
           <Hero />
         </div>
@@ -19,7 +19,7 @@ export default function Home() {
           <AboutMe />
         </div>
       </section>
-      <section id="skills">
+      <section id="skills" className='py-2'>
         <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Habilidades</h2>
         <div className='overflow-x-scroll scroll-smooth snap-mandatory snap-x scrollbar dark:scrollbar-dark'>
           <Carousel className='flex gap-1'>
@@ -50,7 +50,7 @@ export default function Home() {
       <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Formações</h2>
         <Education />
       </section>
-      <section id='contato'>
+      <section id='contato' className='py-2'>
         <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Quer falar comigo?</h2>
         <FormContact />
       </section>
