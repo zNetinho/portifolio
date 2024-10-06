@@ -19,7 +19,7 @@ export async function getUser({ email }: userDto) {
 
 export async function validateCredentials(data: userDto) {
 
-    const user = await getUser(data)
+    const user: any = await getUser(data)
 
     if (!user) {
         return false
