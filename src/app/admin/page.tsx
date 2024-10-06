@@ -1,7 +1,3 @@
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import React from 'react'
-import { FormLogin } from './_components/form-login'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -29,7 +25,7 @@ function PageAdmin() {
           <h1>Bem vindo 😎 </h1>
           <span className='text-xs dark:text-neutral-500 text-black'>preparado para mais uma postagem?</span>
         </div>
-        <FormLogin />
+        {/* vai receber a tabela para listar os posts e também um botão para adicionar mais posts. */}
       </div>
     </section>
   )

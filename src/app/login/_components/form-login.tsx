@@ -1,36 +1,30 @@
 "use client"
 
+import { authenticate } from '@/lib/actions'
 import { UserSchema, UserSchemaType } from '@/schemas/login-schema'
+import { onSubmit } from '@/services/auth'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useFormState } from 'react-dom'
 import { useForm } from 'react-hook-form'
 import ButtonComponent from './button-component'
 import LabelComponent from './label-component'
-import { authenticate } from '@/lib/actions'
-import { useFormState } from 'react-dom';
-import { getUser } from '@/services/auth'
 
 function FormLogin() {
 
     const [errorMessage, formAction, isPending] = useFormState(
         authenticate,
         undefined,
-      );
+    );
 
-    const { 
+    const {
         register,
         handleSubmit,
         formState: { errors },
-        control
     } = useForm<UserSchemaType>({
         resolver: zodResolver(UserSchema)
     })
 
-    const onSubmit = async (data: UserSchemaType, e: any) => {
-        e.preventDefault()
-        const user = await getUser(data)
-        console.log(user)
-      };
-    
+
     return (
         <form
             className='flex flex-col gap-3'
@@ -58,7 +52,7 @@ function FormLogin() {
                 >
                     Password
                 </LabelComponent>
-                <input 
+                <input
                     type='password'
                     id='password'
                     className='py-1 px-1 w-full focus-visible:outline-0 focus-visible:border-0 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
@@ -75,15 +69,14 @@ function FormLogin() {
             </ButtonComponent>
 
             {errorMessage && (
-            <>
-              <span className="h-5 w-5 text-red-500" />
-              <p className="text-sm text-red-500">{errorMessage}</p>
-            </>
-          )}
+                <>
+                    <span className="h-5 w-5 text-red-500" />
+                    <p className="text-sm text-red-500">{errorMessage}</p>
+                </>
+            )}
         </form>
     )
 }
-
 
 export {
     FormLogin
