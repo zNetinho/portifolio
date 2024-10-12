@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react'
 import { GenericsProps } from '@/types/common';
 import { inView, animate } from "framer-motion/dom"
 import { cn } from '@/lib/utils';
+import { getPosts } from '@/services/db/posts';
 
 function TableRowComponent({ children, className }: GenericsProps) {
 
@@ -36,19 +37,13 @@ function TableRowComponent({ children, className }: GenericsProps) {
 
 function TableBodyComponent() {
 
-    const [posts, setPost] = useState<Post[]>([])
-
-    const supabase = createClientBrowser();
+    const [posts, setPost] = useState<any[]>([])
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const { data, error } = await supabase.from('post').select('*');
-            if (error) {
-                console.error(error);
-            } else {
-                console.log(data);
-                if (data) setPost(data);
-            }
+           const data = await getPosts()
+           if(data) setPost(data)
+           console.log("Erro ao carregar os posts:")
         };
 
         fetchPosts();

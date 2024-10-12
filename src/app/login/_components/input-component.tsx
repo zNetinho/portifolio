@@ -13,7 +13,6 @@ function InputComponentEmail({ className, id = 'undefined', type = 'text', ...re
         resolver: zodResolver(UserSchema)
     })
 
-    console.log("objeto props");
     return (
         <Input
             type={type}

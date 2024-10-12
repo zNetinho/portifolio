@@ -1,4 +1,3 @@
-'use client'
 import { FormLogin } from "../login/_components/form-login";
 
 function PageLogin() {
