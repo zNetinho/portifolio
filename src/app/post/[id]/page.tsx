@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { Editor } from '../_components/editor'
 import FormEditor from '../_components/form-editor'
-import { Post } from '@/types/post';
+import { Post } from '@/types/Post/post';
 import { getPostById } from '@/services/db/posts';
 
 function PagePost({...props}) {

@@ -36,9 +36,11 @@ const Editor = ({content}: postContent) => {
           [{ color: [] }, { background: [] }],
           [{ font: [] }],
           [{ align: [] }],
+          [{ image: "upload" }],
           ["clean"],
         ],
         handlers: {},
+
       },
     };
   
@@ -48,15 +50,23 @@ const Editor = ({content}: postContent) => {
             <label>Editor Content</label>
         </div>
         <QuillEditor
-          className="border-[1px] rounded-lg border-neutral-600 dark:text-white"
-          // theme="snow"
+          className="border-[7px] rounded-lg border-neutral-600 text-lg dark:bg-slate-300 text-black"
+          theme="snow"
           modules={modules}
           value={value}
           onChange={(value) => setValue(value)}
         />
         <div className="flex justify-end gap-2 pt-2">
-            <ButtonComponent className="flex gap-1 p-1 border-[1px] rounded-md bg-green-700">Salvar <SaveIcon /></ButtonComponent>
-            <ButtonComponent className="flex gap-1 p-1 border-[1px] rounded-md bg-red-800">Cancelar <XIcon /></ButtonComponent>
+            <ButtonComponent 
+              className="flex gap-1 p-1 border-[1px] rounded-md bg-green-700"
+
+            >
+                Salvar <SaveIcon />
+            </ButtonComponent>
+            <ButtonComponent 
+              className="flex gap-1 p-1 border-[1px] rounded-md bg-red-800">
+                Cancelar <XIcon />
+            </ButtonComponent>
         </div>
       </div>
     );

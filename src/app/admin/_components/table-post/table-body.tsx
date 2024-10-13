@@ -2,7 +2,7 @@
 import { TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { createClientBrowser } from '@/services/db/server';
 import { motion } from 'framer-motion'
-import { Post } from '@/types/post';
+import { Post } from '@/types/Post/post';
 import { Ellipsis, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
@@ -41,8 +41,12 @@ function TableBodyComponent() {
 
     useEffect(() => {
         const fetchPosts = async () => {
-           const data = await getPosts()
-           if(data) setPost(data)
+            try {
+                const data = await fetch('/api/posts').then(res => res.json())
+                if(data) setPost(data)
+            } catch (error) {
+                throw new Error('Error ao buscar os posts')
+            }
            console.log("Erro ao carregar os posts:")
         };
 
@@ -58,8 +62,8 @@ function TableBodyComponent() {
                     <TableCell className='p-1'>{post.aggregatingRating}</TableCell>
                     <TableCell className='p-1'>{post.updatedat}</TableCell>
                     <TableCell className='flex h-full justify-center items-centertext-center gap-1 p-1'>
-                        <Link href={`/admin/post/${post.id}`}><Ellipsis size={20} /></Link>
-                        <Link href={`/admin/post/${post.id}`}><Trash2 size={20} /></Link>
+                        <Link href={`/post/${post.id}`}><Ellipsis size={20} /></Link>
+                        <Link href={`/post/${post.id}`}><Trash2 size={20} /></Link>
                     </TableCell>
                 </TableRowComponent>
             ))}
