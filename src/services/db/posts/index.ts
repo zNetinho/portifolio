@@ -13,6 +13,18 @@ async function getPosts() {
     }
 }
 
+async function getPostById(id: number) {
+    const supabase = createClientBrowser();
+    const { data, error } = await supabase.from('post').select('*').eq('id', id).single();
+    if (error) {
+
+    } else {
+        console.log(data);
+        return data
+    }
+}
+
 export {
-    getPosts
+    getPosts,
+    getPostById
 };

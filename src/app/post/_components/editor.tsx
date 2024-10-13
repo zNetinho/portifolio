@@ -1,14 +1,25 @@
 'use client'
 import ButtonComponent from "@/components/button";
 import { SaveIcon, XIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QuillEditor from "react-quill";
 // Importing styles
 import "react-quill/dist/quill.snow.css";
 
-const Editor = () => {
+type postContent = {
+  content?: string
+}
+
+const Editor = ({content}: postContent) => {
     // Editor state
     const [value, setValue] = useState("");
+    console.log("Conteúdo buscado: ",content);
+
+    useEffect(() => {
+      if(content && content.length > 1) {
+        setValue(content)
+      }
+    },[content])
 
     const modules = {
       toolbar: {
@@ -37,15 +48,15 @@ const Editor = () => {
             <label>Editor Content</label>
         </div>
         <QuillEditor
-          className="border-[1px] rounded-lg border-neutral-600"
-          theme="snow"
+          className="border-[1px] rounded-lg border-neutral-600 dark:text-white"
+          // theme="snow"
           modules={modules}
           value={value}
           onChange={(value) => setValue(value)}
         />
         <div className="flex justify-end gap-2 pt-2">
-            <ButtonComponent className="flex gap-1 p-1 border-[1px] rounded bg-green-700">Salvar <SaveIcon /></ButtonComponent>
-            <ButtonComponent className="flex gap-1 p-1 border-[1px] rounded bg-red-800">Cancelar <XIcon /></ButtonComponent>
+            <ButtonComponent className="flex gap-1 p-1 border-[1px] rounded-md bg-green-700">Salvar <SaveIcon /></ButtonComponent>
+            <ButtonComponent className="flex gap-1 p-1 border-[1px] rounded-md bg-red-800">Cancelar <XIcon /></ButtonComponent>
         </div>
       </div>
     );
