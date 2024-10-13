@@ -1,8 +1,11 @@
 import React from 'react'
+import { Editor } from './_components/editor'
 
-function PagePost({...props}) {
+function PagePost() {
   return (
-    <div>PagePost</div>
+    <div>
+        <Editor />
+    </div>
   )
 }
 
