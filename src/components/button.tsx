@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { HtmlHTMLAttributes } from 'react'
 import { motion } from 'framer-motion'
 import { GenericsProps } from '@/types/common'
 import { cn } from '@/lib/utils'
+import { ButtonProps } from './ui/button'
 
-function ButtonComponent({children, className}: GenericsProps) {
+function ButtonComponent({children, className}: GenericsProps<HtmlHTMLAttributes<HTMLButtonElement>>) {
   return (
     <motion.button
         whileTap={{ scale: 0.97 }}
