@@ -8,12 +8,13 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
 export async function POST(req: NextRequest, res: NextResponse) {
     const body = await req.json();
-    const { title, description, slug, content } = body;
+    const { title, description, slug, content, authorid } = body;
     console.log({ title, description, slug, content })
 
     if (title && description) {
-        const data = await insertPost({ title, description, content, slug, authorId: "1" });
+        const { data, error } = await insertPost({ title, description, content, slug, authorid });
         if (data) return data;
+        if (error) throw new Error(error.message)
         return NextResponse.json(data);
     }
 }

@@ -25,12 +25,13 @@ async function getPostById(id: number) {
     }
 }
 
-async function insertPost({ title, description, content, slug, authorId = "1" }: PostDTO) {
-    const { data, error } = await supabase.from('post').insert({ title, description, content, slug, authorId });
-    if (data) return NextResponse.json(data);
-    if (error) return NextResponse.json(error);
+async function insertPost({ title, description, content, slug, authorid = "1" }: PostDTO) {
+    const { data, error } = await supabase.from('post').insert({ title, description, content, slug, authorid });
 
-    return data
+    return {
+        data,
+        error
+    }
 }
 
 export {

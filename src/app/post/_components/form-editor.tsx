@@ -20,14 +20,16 @@ function FormEditor({
 type inputFormsType<T = unknown> = {
     setAction: React.Dispatch<React.SetStateAction<T>>
     value: string
+    id: string
     valueFetched?: string
     type?: string
 }
 
-function InputForms<T>({ value, valueFetched, setAction }: inputFormsType<string>) {
+function InputForms<T>({ id, value, valueFetched, setAction, type }: inputFormsType<string>) {
     return (
         <Input
-            type='text'
+            id={id}
+            type={type}
             className='py-1 px-1 dark:bg-slate-300 dark:text-neutral-800'
             value={value ? value : valueFetched}
             onChange={(e) => setAction(valueFetched ? valueFetched : e.target.value)}

@@ -4,7 +4,7 @@ import { GenericsProps } from '@/types/common'
 import { cn } from '@/lib/utils'
 import { ButtonProps } from './ui/button'
 
-function ButtonComponent({children, className}: GenericsProps<HtmlHTMLAttributes<HTMLButtonElement>>) {
+function ButtonComponent({children, className}: GenericsProps<ButtonProps>) {
   return (
     <motion.button
         whileTap={{ scale: 0.97 }}

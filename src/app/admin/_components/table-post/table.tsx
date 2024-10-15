@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { GenericsProps } from '@/types/common';
 import ButtonComponent from '@/components/button';
 import { CirclePlus } from 'lucide-react';
+import Link from 'next/link';
 
 
 function TableComponent({ children }: GenericsProps) {
@@ -24,8 +25,13 @@ function TableListPosts() {
 
   return (
     <div>
-      <ButtonComponent className='flex gap-2 items-center text-center absolute right-28 border-2 p-1 rounded-lg border-accent_custom-300'>
-        Criar nova publicação <CirclePlus />
+      <ButtonComponent className='absolute right-28 border-2 p-1 rounded-lg border-accent_custom-300' size={'sm'}>
+        <Link
+          className='flex gap-2 items-center text-center'
+          href={"/post"}
+        >
+          Criar nova publicação <CirclePlus />
+        </Link>
       </ButtonComponent>
       <TableComponent className='border-2 border-neutral-500 rounded-md caption-top'>
         <TableCaption className='my-2 text-lg'>
