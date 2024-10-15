@@ -25,7 +25,7 @@ type inputFormsType<T = unknown> = {
     type?: string
 }
 
-function InputForms<T>({ id, value, valueFetched, setAction, type }: inputFormsType<string>) {
+function InputForms({ id, value, valueFetched, setAction, type }: inputFormsType<string>) {
     return (
         <Input
             id={id}

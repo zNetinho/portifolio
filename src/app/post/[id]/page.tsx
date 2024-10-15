@@ -6,13 +6,19 @@ import { Editor } from '../_components/editor/editor';
 import { FormEditor, InputForms, LabelForms } from '../_components/form-editor';
 import ButtonsEditor from '../_components/editor/buttons-editor';
 
-function PagePost({ ...props }) {
+// Tipagem dos props
+interface PagePostProps {
+  params: {
+    id: string; // Tipo do id do post
+  };
+}
+function PagePost({ params }: PagePostProps) {
   const [post, setPost] = useState<Post>()
   const [title_post, setTitle_post] = useState('')
   const [description_post, setDescription_post] = useState('')
   const [slug_post, setSlug_post] = useState('')
   const [value, setValue] = useState('')
-  const idPost = props.params.id
+  const idPost = Number(params.id)
 
   async function handleAction() {
     console.log("disparou a função do post [id]");
@@ -43,14 +49,16 @@ function PagePost({ ...props }) {
             <LabelForms>
               Titúlo do post (SEO)
             </LabelForms>
-            <InputForms<string>
+            <InputForms
+              id='title_post'
               value={post?.title || ""}
               setAction={setTitle_post}
             />
             <LabelForms>
               Descrição do post (SEO)
             </LabelForms>
-            <InputForms<string>
+            <InputForms
+              id='description_post'
               value={post?.description || ""}
               setAction={setDescription_post}
             />
@@ -59,7 +67,8 @@ function PagePost({ ...props }) {
             <LabelForms>
               slug do post (URL)
             </LabelForms>
-            <InputForms<string>
+            <InputForms
+              id='slug_post'
               value={post?.slug || ""}
               setAction={setSlug_post}
             />
@@ -85,7 +94,10 @@ function PagePost({ ...props }) {
       {idPost}
       <FormEditor />
       <div>
-        <Editor />
+        <Editor
+          setValue={setValue}
+          value={value}
+        />
       </div>
       <ButtonsEditor
         action={handleAction}

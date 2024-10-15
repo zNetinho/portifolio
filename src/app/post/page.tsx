@@ -35,7 +35,7 @@ function PagePost() {
           >
             Titúlo do post (SEO)
           </LabelForms>
-          <InputForms<string>
+          <InputForms
             id="title_post"
             value={title_post}
             setAction={setTitle_post}
@@ -45,7 +45,7 @@ function PagePost() {
           >
             Descrição do post (SEO)
           </LabelForms>
-          <InputForms<string>
+          <InputForms
             id="description_post"
             value={description_post}
             setAction={setDescription_post}
@@ -57,7 +57,7 @@ function PagePost() {
           >
             slug do post (URL)
           </LabelForms>
-          <InputForms<string>
+          <InputForms
             id="slug_post"
             value={slug_post}
             setAction={setSlug_post}
