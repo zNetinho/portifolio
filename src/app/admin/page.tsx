@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import TableListPosts from './_components/table-post/table'
 
 export const metadata: Metadata = {
   title: 'Login admin',
@@ -19,13 +20,14 @@ export const metadata: Metadata = {
 function PageAdmin() {
   return (
 
-    <section className="flex w-3/4 h-[80vh] items-center justify-center mx-auto py-2">
+    <section className="flex w-full h-auto items-center justify-center mx-auto py-2">
       <div className=''>
         <div className="py-2 flex flex-col items-center">
           <h1>Bem vindo 😎 </h1>
           <span className='text-xs dark:text-neutral-500 text-black'>preparado para mais uma postagem?</span>
         </div>
         {/* vai receber a tabela para listar os posts e também um botão para adicionar mais posts. */}
+        <TableListPosts />
       </div>
     </section>
   )

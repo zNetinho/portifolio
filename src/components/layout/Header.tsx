@@ -37,8 +37,6 @@ export default function Header() {
     window.scrollTo(0, 0);
   },[]);
 
-  console.log('é mobile:',isMobile);
-
   return (
     <div className="container mx-auto md:px-6 lg:px-8 contents">
       <header className="sticky top-0 z-50 bg-white dark:bg-neutral-800 flex h-20 w-full shrink-0 items-center px-2 sm:px-4 md:px-6 border-b-gray-800 border-b-[1px] drop-shadow-lg">
