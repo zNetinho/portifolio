@@ -70,7 +70,7 @@ export default function FormContact() {
           console.log('An error occurred', e);
           setResponse({
             type: 'error',
-            message: 'An error occured while submitting the form'
+            message: 'Um erro aconteceu ao enviar a mensagem, por favor tente novamente.'
           });
         }
       };

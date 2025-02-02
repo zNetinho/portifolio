@@ -13,7 +13,8 @@
     "comma-dangle": "off",
     "prettier/prettier": [
       {
-        "endOfLine": "auto"
+        "endOfLine": "auto",
+        "singleQuote": true
       }
     ]
   },

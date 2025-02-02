@@ -12,6 +12,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { ModeToggle } from '@/components/toggle-theme';
 import Head from 'next/head';
 
+import { ClerkProvider } from '@clerk/nextjs';
 
 export const metadata: Metadata = {
   title: 'Portifolio - Antonio Flavio',
@@ -44,6 +45,7 @@ export default function RootLayout({
 }>) {
 
   return (
+    <ClerkProvider>
     <html lang="en" suppressHydrationWarning>
       <body className={`min-h-screen h-full ${poppins.className}`}>
         {/* Dados Estruturados para Pessoa */}
@@ -90,5 +92,6 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
+    </ClerkProvider>
   )
 }

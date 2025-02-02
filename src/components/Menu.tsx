@@ -47,7 +47,7 @@ function Menu({ children, className, direction = false, setToggleMenu = () => {}
                         <LinkMenu 
                             href={link.href}
                             prefetch={false}
-                            className='text-black dark:hover:text-gray-700 hover:text-white dark:focus:text-gray-700'         
+                            className='text-black dark:hover:text-gray-700 hover:text-white dark:focus:text-gray-700 transition-colors duration-300'         
                             >
                             {link.label}
                         </LinkMenu>

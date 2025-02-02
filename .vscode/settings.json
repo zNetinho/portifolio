@@ -8,7 +8,7 @@
     "source.fixAll.eslint": "always"
   },
   "editor.defaultFormatter": "vscode.typescript-language-features",
-  "editor.tabSize": 4,
+  "editor.tabSize": 2,
   "javascript.format.enable": true,
-
+  "editor.minimap.enabled": true,
 }

@@ -9,6 +9,7 @@ import sql from './public/icons/programing/sql_language.svg'
 import git from './public/icons/programing/github.svg'
 import tailwindCss from './public/icons/programing/tailwind_css.svg'
 import pythonIcon from './public/icons/programing/python.svg'
+import { StaticImageData } from 'next/image'
 
 type SkillType = {
   name: string
@@ -169,7 +170,7 @@ export type GraduteType = {
   nameOfInstitute: string
   description: string
   dataOfconclusion: string
-  badge?: string
+  badge?: string | StaticImageData
 }
 
 export const graduate: GraduteType[] = [
@@ -201,5 +202,12 @@ export const courses: GraduteType[] = [
     description: "Curso de 3 semanas ministrado pelo Abimael Curi, o curso foi organizado pela liveSEO, para fornecer aos alunos uma imersão no desenvolvimento web, o curso aconteceu de forma presencial, dentro de 3 semanas foram abordados tópicos como HTML, CSS, JS, acessibilidade, responsividade, melhores práticas de desenvolvimento, boas práticas de SEO.",
     dataOfconclusion: "06/2022",
     badge: "/liveSEO-logo-aplicacao-principal-1-1.png"
+  },
+  {
+    name: "AWS Cloud Practitioner",
+    nameOfInstitute: "AWS",
+    description: "O exame AWS Certified Cloud Practitioner é destinado a indivíduos que têm as habilidades e conhecimentos necessários para efetuar um impacto com sucesso nas decisões de negócios e técnicas de implementação de soluções em plataformas da AWS.",
+    dataOfconclusion: "12/2024",
+    badge: "https://images.credly.com/size/340x340/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png"
   }
 ]

@@ -4,6 +4,7 @@ import { GenericsProps } from '@/types/common';
 import { motion, Variants } from "framer-motion";
 import React, { useState } from 'react';
 import { courses, graduate, GraduteType } from '../../constants';
+import Image from 'next/image';
 
 const itemVariants: Variants = {
     open: {
@@ -199,9 +200,20 @@ function AccordionGraduate() {
                                     <br />
                                     {course.description}
                                 </div>
-                                <p className='flex-1 text-end text-sm font-normal text-neutral-500'>
-                                    Data de conclusão: {course.dataOfconclusion}
-                                </p>
+                                <div>
+                                    <p className='flex-1 text-end text-sm font-normal text-neutral-500'>
+                                        Data de conclusão: {course.dataOfconclusion}
+                                    </p>
+                                    { course.badge && (
+                                        <Image 
+                                            src={course.badge? course.badge : '/images/graduate.png'}
+                                            alt={course.name}
+                                            width={100}
+                                            height={100}
+                                            className='rounded-md'
+                                        />
+                                    )}
+                                </div>
                             </AccordionText>
                         </AccordionItem>
                     </AccordionList>
@@ -244,9 +256,20 @@ function AccordionCourses() {
                                     <br />
                                     {course.description}
                                 </div>
-                                <p className='flex-1 text-end text-sm font-normal text-neutral-500'>
-                                    Data de conclusão: {course.dataOfconclusion}
-                                </p>
+                                <div className='flex flex-col items-center'>
+                                    <p className='flex-1 text-end text-sm font-normal text-neutral-500'>
+                                        Data de conclusão: {course.dataOfconclusion}
+                                    </p>
+                                    { course.badge && (
+                                        <Image 
+                                            src={course.badge? course.badge : '/images/graduate.png'}
+                                            alt={course.name}
+                                            width={80}
+                                            height={80}
+                                            className='rounded-md'
+                                        />
+                                    )}
+                                </div>
                             </AccordionText>
                         </AccordionItem>
                     </AccordionList>
