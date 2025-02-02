@@ -1,7 +1,7 @@
 "use client"
 import AboutMe from '@/components/AboutMe'
 import { CardCarousel, Carousel, DescriptionCardCarousel, PhotoCardCarousel, TitleCardCarousel } from '@/components/Carousel'
-import { Education } from '@/components/education'
+import Education from '@/components/education'
 import FormContact from '@/components/form/form-contact'
 import { GalleryProjects } from '@/components/gallery-projects'
 import Hero from '@/components/Hero'

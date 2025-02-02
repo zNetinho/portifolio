@@ -2,42 +2,63 @@
 import { getPostById } from '@/services/db/posts';
 import { Post } from '@/types/Post/post';
 import { useEffect, useState } from 'react';
+import ButtonsEditor from '../_components/editor/buttons-editor';
 import { Editor } from '../_components/editor/editor';
 import { FormEditor, InputForms, LabelForms } from '../_components/form-editor';
-import ButtonsEditor from '../_components/editor/buttons-editor';
 
 // Tipagem dos props
 interface PagePostProps {
   params: {
-    id: string; // Tipo do id do post
+    id: string;
   };
 }
 function PagePost({ params }: PagePostProps) {
   const [post, setPost] = useState<Post>()
-  const [title_post, setTitle_post] = useState('')
-  const [description_post, setDescription_post] = useState('')
-  const [slug_post, setSlug_post] = useState('')
+  const [title_post, setTitlePost] = useState('')
+  const [description_post, setDescriptionPost] = useState('')
+  const [slug_post, setSlugPost] = useState('')
   const [value, setValue] = useState('')
+  const [selectedFile, setSelectedFile] = useState<string>('');
   const idPost = Number(params.id)
 
-  async function handleAction() {
-    console.log("disparou a função do post [id]");
-    await fetch(`localhost:3000/api/posts/${idPost}`, {
+  async function handleActionEdit() {
+    await fetch(`/api/posts/${idPost}`, {
+      method: 'POST',
       body: JSON.stringify({
+        id: idPost,
         title: title_post,
         description: description_post,
         content: value,
-        slug: slug_post
+        slug: slug_post,
+        image_featured: selectedFile,
       })
     })
+  }
+
+  function handleFile(event: React.ChangeEvent<HTMLInputElement>) {
+    if (!event.target.files) return;
+    const file = event.target.files[0];
+    setSelectedFile(file.name);
   }
 
   if (idPost) {
     useEffect(() => {
       async function fetchPost() {
-        const data = await getPostById(idPost);
-        if (data) setPost(data)
-        console.log("Erro ao carregar o post:");
+        try {
+          const response = await getPostById(idPost);
+          if (response && response.data) {
+            const data = response.data;
+            setPost(data);
+            setTitlePost(data.title);
+            setDescriptionPost(data.description);
+            setSlugPost(data.slug);
+            setValue(data.content);
+          }
+        } catch (error) {
+          if (error instanceof Error) {
+            console.error(error.message);
+          }
+        }
       }
       fetchPost();
     }, [])
@@ -51,16 +72,16 @@ function PagePost({ params }: PagePostProps) {
             </LabelForms>
             <InputForms
               id='title_post'
-              value={post?.title || ""}
-              setAction={setTitle_post}
+              value={title_post}
+              setAction={setTitlePost}
             />
             <LabelForms>
               Descrição do post (SEO)
             </LabelForms>
             <InputForms
               id='description_post'
-              value={post?.description || ""}
-              setAction={setDescription_post}
+              value={description_post}
+              setAction={setDescriptionPost}
             />
           </div>
           <div className='flex-1'>
@@ -69,9 +90,10 @@ function PagePost({ params }: PagePostProps) {
             </LabelForms>
             <InputForms
               id='slug_post'
-              value={post?.slug || ""}
-              setAction={setSlug_post}
+              value={slug_post}
+              setAction={setSelectedFile}
             />
+            <input type="file" onChange={handleFile} />
           </div>
         </FormEditor>
         <div>
@@ -81,13 +103,12 @@ function PagePost({ params }: PagePostProps) {
             setValue={setValue}
           />
           <ButtonsEditor
-            action={handleAction}
+            action={() => handleActionEdit()}
           />
         </div>
       </div>
     )
   }
-
 
   return (
     <div className='py-2'>
@@ -100,7 +121,7 @@ function PagePost({ params }: PagePostProps) {
         />
       </div>
       <ButtonsEditor
-        action={handleAction}
+        action={() => handleActionEdit()}
       />
     </div>
   )

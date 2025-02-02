@@ -62,8 +62,8 @@ function TableBodyComponent() {
                     <TableCell className='p-1'>{post.aggregatingRating}</TableCell>
                     <TableCell className='p-1'>{post.updatedat}</TableCell>
                     <TableCell className='flex h-full justify-center items-centertext-center gap-1 p-1'>
-                        <Link href={`/post/${post.id}`}><Ellipsis size={20} /></Link>
-                        <Link href={`/post/${post.id}`}><Trash2 size={20} /></Link>
+                        <Link href={`/admin/post/${post.id}`}><Ellipsis size={20} /></Link>
+                        <Link href={`/admin/post/${post.id}`}><Trash2 size={20} /></Link>
                     </TableCell>
                 </TableRowComponent>
             ))}

@@ -5,5 +5,6 @@ export const PostSchema = z.object({
     description: z.string().min(2, { message: "Descrição muito curta" }).max(160, { message: "Descrição muito longa" }),
     content: z.string().min(2, { message: "Conteúdo muito curto" }),
     slug: z.string().min(2, { message: "Slug muito curto" }).toLowerCase().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, { message: "Slug inválido" }),
-    authorid: z.string()
+    authorid: z.string(),
+    imageFeatured: z.string().optional()
 })

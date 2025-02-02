@@ -28,7 +28,7 @@ function TableListPosts() {
       <ButtonComponent className='absolute right-28 border-2 p-1 rounded-lg border-accent_custom-300' size={'sm'}>
         <Link
           className='flex gap-2 items-center text-center'
-          href={"/post"}
+          href={"/admin/post"}
         >
           Criar nova publicação <CirclePlus />
         </Link>
