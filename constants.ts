@@ -194,20 +194,20 @@ export const courses: GraduteType[] = [
     nameOfInstitute: "Escola da Nuvem",
     description: "O AWS re/Start é um programa de desenvolvimento de habilidades e treinamento profissional que prepara os alunos para carreiras na nuvem. Cada turma, apoiada por mentores profissionais e instrutores credenciados, conclui o treinamento com aprendizado baseado em cenários do mundo real, laboratórios práticos e cursos.",
     dataOfconclusion: "06/2024",
-    badge: "https://images.credly.com/images/44e2c252-5d19-4574-9646-005f7225bf53/image.png"
+    badge: "/certifieds/aws-graduate.webp"
   },
   {
     name: "Desenvolvimento Web",
     nameOfInstitute: "liveSEO",
     description: "Curso de 3 semanas ministrado pelo Abimael Curi, o curso foi organizado pela liveSEO, para fornecer aos alunos uma imersão no desenvolvimento web, o curso aconteceu de forma presencial, dentro de 3 semanas foram abordados tópicos como HTML, CSS, JS, acessibilidade, responsividade, melhores práticas de desenvolvimento, boas práticas de SEO.",
     dataOfconclusion: "06/2022",
-    badge: "/liveSEO-logo-aplicacao-principal-1-1.png"
+    badge: "/liveSEO-logo-aplicacao-principal-1-1.webp"
   },
   {
     name: "AWS Cloud Practitioner",
     nameOfInstitute: "AWS",
     description: "O exame AWS Certified Cloud Practitioner é destinado a indivíduos que têm as habilidades e conhecimentos necessários para efetuar um impacto com sucesso nas decisões de negócios e técnicas de implementação de soluções em plataformas da AWS.",
     dataOfconclusion: "12/2024",
-    badge: "https://images.credly.com/size/340x340/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png"
+    badge: "/certifieds/aws-cloud-practitioner.webp"
   }
 ]

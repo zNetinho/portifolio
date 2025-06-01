@@ -13,7 +13,7 @@ const itemVariants: Variants = {
         scale: 1,
         transition: { type: "spring", stiffness: 300, damping: 24 }
     },
-    closed: { opacity: 0, y: 20, transition: { duration: 0.7 }}
+    closed: { opacity: 0, y: 20, transition: { duration: 0.7 } }
 };
 
 type AccordionProps = {
@@ -43,7 +43,7 @@ function AccordionArrowIcon() {
 function AccordionWrapper({ children, className }: GenericsProps) {
     return (
         <motion.div
-            className='flex'
+            className={cn([className, 'flex'])}
             variants={{
                 open: { rotate: 180 },
                 closed: { rotate: 0 }
@@ -63,7 +63,7 @@ type AccordionListProps = {
 function AccordionList({ children, className, isOpen }: GenericsProps<AccordionListProps>) {
     return (
         <motion.ul
-            className={cn([`min-h-[1px] ${isOpen ? "block" : "hidden"} border-[1px] rounded-md`], className)}
+            className={cn([`min-h-[1px] ${isOpen ? "block" : "hidden"} border-[1px]`, className])}
             variants={{
                 open: {
                     clipPath: "inset(0% 0% 0% 0% round 10px)",
@@ -136,7 +136,7 @@ function AccordionTitle({ children, className }: GenericsProps) {
 
 function AccordionText({ children, className }: GenericsProps) {
     return (
-        <div className={cn(['border-neutral-600 border-[1px] border-t-0 rounded-md', className])}>
+        <div className={cn(['border-neutral-600 border-[1px] border-t-0 ', className])}>
             {children}
         </div>
     )
@@ -182,7 +182,7 @@ function AccordionGraduate() {
                         onClick={() => toggleAccordion(index, setOpenIndexes, setDataOpen, dataOpen)}
                         isOpen={openIndexes.includes(index)}
                         setIsOpen={() => toggleAccordion(index, setOpenIndexes, setDataOpen, dataOpen)}
-                        className={`w-full flex py-5 mt-1 justify-between items-center text-neutral-800 border-[1px] ${dataOpen ? 'mb-0 border-b-0' : 'mb-1' } rounded-md px-0.5 dark:text-neutral-300 dark:border-neutral-800`}
+                        className={`w-full flex py-5 mt-1 justify-between items-center text-neutral-800 border-[1px] ${openIndexes.includes(index) ? 'bg-neutral-800 text-black mb-0 border-b-0' : 'mb-1'} focus:outline-none rounded-none rounded-b-md px-0.5  dark:border-neutral-800`}
                         data-open={false}
                     >
                         <AccordionTitle className='font-semibold text-xl'>
@@ -192,9 +192,9 @@ function AccordionGraduate() {
                             <AccordionArrowIcon />
                         </AccordionWrapper>
                     </AccordionButton>
-                    <AccordionList isOpen={openIndexes.includes(index)}>
-                        <AccordionItem>
-                            <AccordionText className='flex justify-between gap-5 py-1 px-0.5'>
+                    <AccordionList isOpen={openIndexes.includes(index)} className='rounded-b-md rounded-t-none'>
+                        <AccordionItem className='rounded-b-md rounded-t-none'>
+                            <AccordionText className={`${openIndexes.includes(index) ? 'bg-neutral-800 text-white' : ''} flex justify-between gap-5 py-1 px-0.5`}>
                                 <div className="flex flex-col w-3/4">
                                     <p className='text-xl leading-4'>{course.nameOfInstitute}</p>
                                     <br />
@@ -204,9 +204,9 @@ function AccordionGraduate() {
                                     <p className='flex-1 text-end text-sm font-normal text-neutral-500'>
                                         Data de conclusão: {course.dataOfconclusion}
                                     </p>
-                                    { course.badge && (
-                                        <Image 
-                                            src={course.badge? course.badge : '/images/graduate.png'}
+                                    {course.badge && (
+                                        <Image
+                                            src={course.badge ? course.badge : '/images/graduate.png'}
                                             alt={course.name}
                                             width={100}
                                             height={100}
@@ -239,7 +239,7 @@ function AccordionCourses() {
                         onClick={() => toggleAccordion(index, setOpenIndexes, setDataOpen, dataOpen)}
                         isOpen={openIndexes.includes(index)}
                         setIsOpen={() => toggleAccordion(index, setOpenIndexes, setDataOpen, dataOpen)}
-                        className='w-full flex py-5 my-1 justify-between items-center text-neutral-800 border-[1px] rounded-md px-0.5 dark:text-neutral-300 dark:border-neutral-800'
+                        className={`w-full flex py-5 my-1 justify-between items-center border-[1px] text-neutral-800 rounded-md px-0.5 dark:border-neutral-800 ${openIndexes.includes(index) ? 'bg-neutral-800 mb-0 border-b-0' : 'mb-1'}`}
                     >
                         <AccordionTitle className='font-semibold text-xl'>
                             {course.name}
@@ -248,10 +248,10 @@ function AccordionCourses() {
                             <AccordionArrowIcon />
                         </AccordionWrapper>
                     </AccordionButton>
-                    <AccordionList isOpen={openIndexes.includes(index)}>
-                        <AccordionItem className='border-solid border-[1px] rounded-md'>
-                            <AccordionText className='flex justify-between gap-5 py-1 px-0.5'>
-                                <div className="flex flex-col w-3/4">
+                    <AccordionList isOpen={openIndexes.includes(index)} className='rounded-none rounded-b-md rounded-t-none'>
+                        <AccordionItem className={`${openIndexes.includes(index) ? 'bg-neutral-800 text-white' : ''} border-solid border-[1px] rounded-b-md rounded-t-none`}>
+                            <AccordionText className='flex justify-between gap-5 py-1 px-0.5 rounded-b-md rounded-t-none'>
+                                <div className={`flex flex-col w-3/4`}>
                                     <span className='text-xl leading-4'>{course.nameOfInstitute}</span>
                                     <br />
                                     {course.description}
@@ -260,9 +260,9 @@ function AccordionCourses() {
                                     <p className='flex-1 text-end text-sm font-normal text-neutral-500'>
                                         Data de conclusão: {course.dataOfconclusion}
                                     </p>
-                                    { course.badge && (
-                                        <Image 
-                                            src={course.badge? course.badge : '/images/graduate.png'}
+                                    {course.badge && (
+                                        <Image
+                                            src={course.badge ? course.badge : '/images/graduate.png'}
                                             alt={course.name}
                                             width={80}
                                             height={80}
