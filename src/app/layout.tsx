@@ -45,53 +45,53 @@ export default function RootLayout({
 }>) {
 
   return (
-    <ClerkProvider>
-    <html lang="en" suppressHydrationWarning>
-      <body className={`min-h-screen h-full ${poppins.className}`}>
-        {/* Dados Estruturados para Pessoa */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfilePage",
-              "dateCreated": "2024-01-01T07:00:00-05:00",
-              "dateModified": "2024-10-01T07:00:00-05:00",
-              "mainEntity": {
-                "@type": "Person",
-                "name": "Antonio Flavio de Andrade Neto",
-                "alternateName": "Netinho",
-                "identifier": "99999999",
-                "description": "Web Developer fullstack & Analista SEO",
-                "image": "https://drive.google.com/file/d/1ySNiBYQfEYpALvqesW0hmknVCDnP_HXt/view?usp=drive_link",
-                "sameAs": [
-                  "https://www.linkedin.com/in/antonioflavio",
-                  "https://github.com/zNetinho"
-                ]
-              }
-            })
-          }}
-        />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Page>
-            <TemplateTransition>
-              {children}
-              <Analytics />
-              <SpeedInsights />
-              <Toaster />
-            </TemplateTransition>
-          </Page>
-          <div className="sticky bottom-0 float-right justify-end p-1">
-            <ModeToggle />
-          </div>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+      <html lang="en" suppressHydrationWarning>
+        <body className={`min-h-screen h-full ${poppins.className}`}>
+          {/* Dados Estruturados para Pessoa */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "ProfilePage",
+                "dateCreated": "2024-01-01T07:00:00-05:00",
+                "dateModified": "2024-10-01T07:00:00-05:00",
+                "mainEntity": {
+                  "@type": "Person",
+                  "name": "Antonio Flavio de Andrade Neto",
+                  "alternateName": "Netinho",
+                  "identifier": "99999999",
+                  "description": "Web Developer fullstack & Analista SEO",
+                  "image": "https://drive.google.com/file/d/1ySNiBYQfEYpALvqesW0hmknVCDnP_HXt/view?usp=drive_link",
+                  "sameAs": [
+                    "https://www.linkedin.com/in/antonioflavio",
+                    "https://github.com/zNetinho"
+                  ]
+                }
+              })
+            }}
+          />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Page>
+              <TemplateTransition>
+                {children}
+                <Analytics />
+                <SpeedInsights />
+                <Toaster />
+              </TemplateTransition>
+            </Page>
+            <div className="sticky bottom-0 float-right justify-end p-1">
+              <ModeToggle />
+            </div>
+          </ThemeProvider>
+        </body>
+      </html>
     </ClerkProvider>
   )
 }
