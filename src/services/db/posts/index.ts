@@ -7,7 +7,8 @@ const supabase = createClientBrowser();
 
 async function getPosts() {
 
-    const { data, error } = await supabase.from('post').select('*');
+    const { data, error } = await supabase.from('Post').select('*');
+    console.log('data', data, 'error', error)
     if (error) {
         console.error(error);
     } else {
@@ -18,7 +19,7 @@ async function getPosts() {
 async function getPostById(id: number) {
     console.log(id)
     try {
-        const { data, error } = await supabase.from('post').select('*').eq('id', id).maybeSingle();
+        const { data, error } = await supabase.from('Post').select('*').eq('id', id).maybeSingle();
         console.log(data, error)
         return {
             data,
@@ -39,7 +40,7 @@ async function insertPost({ id, title, description, content, slug, image_feature
     if (data?.data === null) {
         console.log("entroy aqui")
         try {
-            const { data, error } = await supabase.from('post').insert({ title, description, content, slug, image_featured });
+            const { data, error } = await supabase.from('Post').insert({ title, description, content, slug, image_featured, id });
             console.log(data, error)
             return {
                 data,
@@ -56,7 +57,7 @@ async function insertPost({ id, title, description, content, slug, image_feature
 async function updatePost({ id, title, description, content, slug, image_featured }: PostDTO): Promise<any> {
     console.log(id, title, description, content, slug, image_featured)
     try {
-        const { data, error } = await supabase.from('post').update({ title, description, content, slug }).eq('id', id);
+        const { data, error } = await supabase.from('Post').update({ title, description, content, slug }).eq('id', id);
         if (data) {
             return NextResponse.json(data);
         } else {
@@ -78,16 +79,16 @@ async function uploadImageFeatured(fileName: string, file: File) {
         try {
             const { data, error } = await supabase
                 .storage
-                .from('images_featured')
+                .from('images-featured')
                 .upload(fileName, file, {
                     cacheControl: '3600',
                     upsert: false,
                 });
             if (error?.message.toString() === "The resource already exists") {
-                return getPublicUrl(fileName, 'images_featured');
+                return getPublicUrl(fileName, 'images-featured');
             }
             if (data) {
-                return getPublicUrl(fileName, 'images_featured');
+                return getPublicUrl(fileName, 'images-featured');
             }
         } catch (error) {
             console.error('Error:', error);

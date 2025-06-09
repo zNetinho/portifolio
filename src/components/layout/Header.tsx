@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { Menu } from '../Menu'
 import { useCycle } from 'framer-motion'
 import UserAvatar from '../user/avatar'
+import ExitAnimation from '../animation/exit-animation'
 
 export default function Header() {
   const [isOpen, toggleOpen] = useCycle(false, true);
@@ -84,7 +85,7 @@ export default function Header() {
           </motion.div>
           {/* Fim menu desktop */}
           {/* Menu mobile */}
-          <motion.div
+          {/* <motion.div
             className={`${isMobile || scrollTop > 50 ? 'block' : 'hidden'} w-full flex justify-end items-center mr-2`}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -95,12 +96,8 @@ export default function Header() {
               className={`cursor-pointer`}
               onClick={() => setToggle(!toggle)}
             /> : <X className='cursor-pointer' onClick={() => setToggle(!toggle)} />}
-          </motion.div>
-          <div className={`${toggle ? 'translate-y-0 opacity-100' : 'hidden translate-y-[-30px] opacity-0'
-            } h-auto w-56 rounded-lg dark:bg-neutral-800 bg-neutral-200 absolute z-10 top-20 right-5 transition-all duration-300 ease-in-out`}
-          >
-            <Menu direction={true} className='transition-transform delay-200 translate-y-3' setToggleMenu={setToggle} toggle={toggle} />
-          </div>
+          </motion.div> */}
+          <ExitAnimation />
         </div>
         {/* Fim menu mobile */}
         <div className="flex justify-center items-center">

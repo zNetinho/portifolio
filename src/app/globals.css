@@ -153,3 +153,18 @@
 .bg-nodejs {
   background-color: #43853d;
 }
+
+.slick-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slick-dots li button {
+  height: 10px !important;
+  width: 10px !important;
+  background: #5c5c5c !important;
+  border-radius: 100% !important;
+}
+
+.slick-dots li button:hover {
+  background: #363430 !important;
+}
