@@ -208,6 +208,6 @@ export const courses: GraduteType[] = [
     nameOfInstitute: "AWS",
     description: "O exame AWS Certified Cloud Practitioner é destinado a indivíduos que têm as habilidades e conhecimentos necessários para efetuar um impacto com sucesso nas decisões de negócios e técnicas de implementação de soluções em plataformas da AWS.",
     dataOfconclusion: "12/2024",
-    badge: "/liveSEO-logo-aplicacao-principal-1-1.webp"
+    badge: "/certifieds/aws-cloud-practitioner.webp"
   }
 ]
