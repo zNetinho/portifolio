@@ -3,26 +3,26 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 const links = [
-        {
-            "label": "Home",
-            "href": "/"
-        },
-        {
-            "label": "Skills",
-            "href": "#skills"
-        },
-        {
-            "label": "Projetos",
-            "href": "#projetos"
-        },
-        {
-            "label": "Sobre",
-            "href": "#sobre"
-        },
-        {
-            "label": "Contato",
-            "href": "#contato"
-        }
+    {
+        "label": "Home",
+        "href": "/"
+    },
+    {
+        "label": "Skills",
+        "href": "#skills"
+    },
+    {
+        "label": "Projetos",
+        "href": "#projetos"
+    },
+    {
+        "label": "Sobre",
+        "href": "#sobre"
+    },
+    {
+        "label": "Contato",
+        "href": "#contato"
+    }
 ]
 
 type PropsMenu = {
@@ -33,31 +33,31 @@ type PropsMenu = {
     setToggleMenu?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function Menu({ children, className, direction = false, setToggleMenu = () => {}, toggle }: PropsMenu) {
+function Menu({ children, className, direction = false, setToggleMenu = () => { }, toggle }: PropsMenu) {
 
-  return (
-    <nav>
-        <div className='w-full px-1.5 py-[0.5rem]'>
-            <ul className={`ml-auto flex flex-${direction? 'col' : 'row'} gap-1`}>
-                {
-                links.map((link) => (
-                    <li key={link.label}
-                        onClick={() => setToggleMenu(!toggle)}
-                    >
-                        <LinkMenu 
-                            href={link.href}
-                            prefetch={false}
-                            className='text-black dark:hover:text-gray-700 hover:text-white dark:focus:text-gray-700 transition-colors duration-300'         
+    return (
+        <nav>
+            <div className='w-full px-1.5 py-[0.5rem]'>
+                <ul className={`ml-auto flex flex-${direction ? 'col' : 'row'} gap-1`}>
+                    {
+                        links.map((link) => (
+                            <li key={link.label}
+                                onClick={() => setToggleMenu(!toggle)}
                             >
-                            {link.label}
-                        </LinkMenu>
-                    </li>
-                ))
-                }
-            </ul>
-        </div>
-    </nav>
-  )
+                                <LinkMenu
+                                    href={link.href}
+                                    prefetch={false}
+                                    className='text-black dark:hover:text-gray-700 hover:text-white dark:focus:text-gray-700 transition-colors duration-300'
+                                >
+                                    {link.label}
+                                </LinkMenu>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        </nav>
+    )
 }
 
 type LinkMenuProps = {
@@ -69,7 +69,7 @@ type LinkMenuProps = {
 
 function LinkMenu({ href, prefetch, children, className }: LinkMenuProps) {
     return (
-        <Link 
+        <Link
             href={href}
             prefetch={prefetch}
             className={cn([

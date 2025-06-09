@@ -7,6 +7,7 @@ import { GalleryProjects } from '@/components/gallery-projects'
 import Hero from '@/components/Hero'
 import * as motion from "framer-motion/client"
 import { projects, skills } from '../../constants'
+import CustomSlider from '@/components/slider'
 
 export default function Home() {
   return (
@@ -21,8 +22,8 @@ export default function Home() {
       </section>
       <section id="skills" className='py-2'>
         <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Habilidades</h2>
-        <div className='overflow-x-scroll scroll-smooth snap-mandatory snap-x scrollbar dark:scrollbar-dark'>
-          <Carousel className='flex gap-1'>
+        <div>
+          <CustomSlider>
             {skills.map((skill) => (
               <CardCarousel key={skill.name} className='w-max-[100px] min-h-48 max-h-48 p-1 flex flex-col items-center justify-center'>
                 {<PhotoCardCarousel src={skill.icon} fetchPriority='low' loading='lazy' className='min-w-[100px]'></PhotoCardCarousel>}
@@ -32,10 +33,10 @@ export default function Home() {
                 </DescriptionCardCarousel>
               </CardCarousel>
             ))}
-          </Carousel>
+          </CustomSlider>
         </div>
       </section>
-      <motion.section 
+      <motion.section
         id="projetos"
         className="flex flex-col w-full py-2 scrollbars"
         initial={{ opacity: 0 }}
@@ -47,7 +48,7 @@ export default function Home() {
         />
       </motion.section>
       <section className='py-2'>
-      <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Formações</h2>
+        <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Formações</h2>
         <Education />
       </section>
       <section id='contato' className='py-2'>
