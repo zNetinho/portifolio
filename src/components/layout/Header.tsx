@@ -85,18 +85,6 @@ export default function Header() {
           </motion.div>
           {/* Fim menu desktop */}
           {/* Menu mobile */}
-          {/* <motion.div
-            className={`${isMobile || scrollTop > 50 ? 'block' : 'hidden'} w-full flex justify-end items-center mr-2`}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.7, ease: 'easeInOut' }}
-          >
-            {!toggle ? <MenuIcon
-              className={`cursor-pointer`}
-              onClick={() => setToggle(!toggle)}
-            /> : <X className='cursor-pointer' onClick={() => setToggle(!toggle)} />}
-          </motion.div> */}
           <ExitAnimation />
         </div>
         {/* Fim menu mobile */}
