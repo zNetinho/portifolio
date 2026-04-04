@@ -209,5 +209,12 @@ export const courses: GraduteType[] = [
     description: "O exame AWS Certified Cloud Practitioner é destinado a indivíduos que têm as habilidades e conhecimentos necessários para efetuar um impacto com sucesso nas decisões de negócios e técnicas de implementação de soluções em plataformas da AWS.",
     dataOfconclusion: "12/2024",
     badge: "/certifieds/aws-cloud-practitioner.webp"
+  },
+  {
+    name: "AWS Developer Associate",
+    nameOfInstitute: "AWS",
+    description: "A certificação AWS Certified Developer - Associate demonstra habilidades e conhecimento em desenvolvimento, otimização, empacotamento e implantação de aplicações, utilizando fluxos de trabalho de CI/CD, além de identificar e resolver problemas de aplicações. Essa certificação é um ótimo ponto de partida na jornada de certificação AWS para profissionais de TI ou desenvolvedores de nuvem.",
+    dataOfconclusion: "04/2026",
+    badge: "/certifieds/badge-developer-associate.webp"
   }
 ]
