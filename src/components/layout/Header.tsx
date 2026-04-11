@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { Menu } from '../Menu'
 import { useCycle } from 'framer-motion'
-import UserAvatar from '../user/avatar'
 import ExitAnimation from '../animation/exit-animation'
 
 export default function Header() {
@@ -63,8 +62,8 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="container mx-auto md:px-6 lg:px-8 contents">
-      <header className="sticky top-0 z-50 bg-white dark:bg-neutral-800 flex h-20 w-full shrink-0 justify-between px-2 sm:px-4 md:px-6 border-b-gray-800 border-b-[1px] drop-shadow-lg">
+    <header className="container mx-auto md:px-6 lg:px-8 contents">
+      <div className="sticky top-0 z-50 bg-white dark:bg-neutral-800 flex h-20 w-full shrink-0 justify-between px-2 sm:px-4 md:px-6 border-b-gray-800 border-b-[1px] drop-shadow-lg">
         <div className="flex justify-between w-full">
           <Link href="#" className="mr-6 flex items-center" prefetch={false}>
             <Code className="h-6 w-6 flex hover:drop-shadow-lg" />
@@ -88,10 +87,7 @@ export default function Header() {
           <ExitAnimation />
         </div>
         {/* Fim menu mobile */}
-        <div className="flex justify-center items-center">
-          <UserAvatar />
-        </div>
-      </header>
-    </div>
+      </div>
+    </header>
   )
 }
