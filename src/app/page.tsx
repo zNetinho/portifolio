@@ -20,7 +20,7 @@ export default function Home() {
           <AboutMe />
         </div>
       </section>
-      <section id="skills" className='py-2'>
+      <section id="skills" className='px-2 py-2'>
         <h2 className='text-3xl dark:text-white text-center pb-2 font-bold'>Habilidades</h2>
         <div>
           <CustomSlider>
